@@ -1,17 +1,25 @@
 # Initial page
 
-**Так же необходимо:**
+Бэкап перевода Яши с wasm.in цикла статей "Введение в реверсинг с нуля, используя IDA PRO" от Рикардо Нарвахи
 
-1. поправить глупые смысловые ошибки 
-2. выполнить разбиение на блоки, перенести иллюстрации \(8/67\)
-3. разбить части на подглавы, дополнить описания частей
-4. Переписать картинки с таблицами в виде обычных таблиц
-5. перенести бинарные файлы на которых показываются примеры
-6. недостает 66 часть 2 - Яша забыил
+[**Gitbook версия**](https://yutewiyof.gitbook.io/intro-rev-ida-pro/)
 
-   [**http://ricardonarvaja.info/WEB/INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO/EN INGLES/**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EN%20INGLES/)
+**TODO:**
+
+1. поправить глупые смысловые ошибки
+2. ~~выполнить разбиение на блоки, перенести иллюстрации на гит~~
+3. разбить части на подглавы, дополнить описания частей, поправить оформление, примеры кода
+4. переписать в виде обычных таблиц картинки с таблицами, и прочие скриншоты из книг
+5. перенести бинарные файлы на которых показываются примеры (а надо ли?)
+6. недостает 66 часть 2 (ждать перевод Яши / либо перевести)
+7. состряпать инструкцию по конвертации \*.md to \*.tex и сборке PDF
+
+[ricardonarvaja.info](http://ricardonarvaja.info)
+
+[Введение в реверсинг с нуля, используя IDA PRO - на английском (PDF)](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EN%20INGLES/)
+
+[Введение в реверсинг с нуля, используя IDA PRO - на испанском (Word)](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/)
 
 [https://wasm.in](https://wasm.in)
 
 [https://exelab.ru/f/index.php?action=vthread&forum=5&topic=24454](https://exelab.ru/f/index.php?action=vthread&forum=5&topic=24454)
-
