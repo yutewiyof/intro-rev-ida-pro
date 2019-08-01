@@ -2,7 +2,7 @@
 
 Бэкап перевода Яши с wasm.in цикла статей "Введение в реверсинг с нуля, используя IDA PRO" от Рикардо Нарвахи
 
-[**Gitbook версия**](https://yutewiyof.gitbook.io/intro-rev-ida-pro/)
+[**Gitbook версия**](https://backlect.gitbook.io/intro-rev-ida-pro/)
 
 **TODO:**
 
