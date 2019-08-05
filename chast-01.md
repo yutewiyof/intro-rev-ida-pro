@@ -146,9 +146,14 @@
 
 Автор оригинального текста — Рикардо Нарваха.
 
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
 Перевод и адаптация на русский язык — Яша Яшечкин.
 
 30.07.19
+
+Источник:
+[**http://ricardonarvaja.info/WEB/INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO/EN INGLES/**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EN%20INGLES/)
 
 Помочь текущему проекту и будущим можно через домашнюю страничку
 
