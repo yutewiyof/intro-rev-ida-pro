@@ -72,7 +72,7 @@
 
 С помощью этих знаний, мы могли бы уже создать скрипт. Те данные, которые мы бы послали программе, были бы такие.
 
-FRUTA = 68 \* ”A” + COOKIE + FLAG + COOKIE2
+FRUTA = 68 \* "A" + COOKIE + FLAG + COOKIE2
 
 **from** subprocess **import** \*
 **import** struct
