@@ -258,8 +258,18 @@
 
 В 4-той части, мы продолжим и разберём больше инструкций.
 
-Рикардо Нарваха
-Перевод на английский @IvinsonCLS
-Перевод на русский Яша\_Добрый\_Хакер
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
 Перевод специально для форума системного и низкоуровневого программирования - **WASM.IN**
+
 18.02.2017
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/3-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%203.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/3-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%203.7z)
