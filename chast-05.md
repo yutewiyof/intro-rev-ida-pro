@@ -82,11 +82,20 @@
 
 Это означает, что инструкция переместит значение **0x40001С**.
 
-До встрече в **6** части.
+До встрече в **6**-й главе.
+
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
+08.03.2017
 
 Источник:
-[http://ricardonarvaja.info/WEB/INTRODUCCION](http://ricardonarvaja.info/WEB/INTRODUCCION) AL REVERSING CON IDA PRO DESDE CERO/EN INGLES/
-Перевод на английский - @IvinsonCLS
-Перевод на русский — Яша\_Добрый\_Хакер
-Перевод специально для форума системного и низкоуровневого программирования - **WASM.IN**
-08.03.2017
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/5-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%205.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/5-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%205.7z)
