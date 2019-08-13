@@ -2,10 +2,14 @@
 
 Перед тем как продолжать с упражнениями углубляться в использование **IDA**, мы рассмотрим эту главу **№13** в расслабленном режиме\(**RELAX MODE WASM**\), чтобы изучить плагин, который достаточно удобный и даёт нам возможность лучше управлять **PYTHON**, **Шадди** предложил использовать эту включенную, интересную панельку и я ему очень благодарен.
 
+С IDA в комплекте идет версия Python в составе которой OpenSSL 0.9.8 , которая не поддерживает TLSv1.2, а все ресурсы к которым обращается скрипт, давно удалили TLSv1.0 и TLSv1.1 так что если вы используете Python 2.7.6 или старше, вам необходимо обновить до последней версии ( в настоящее время 2.7.15) для того , чтобы установить пакеты с pip.
+
+Скачиваем и устанавливаем [**https://www.python.org/downloads/release/python-2715/**](https://www.python.org/downloads/release/python-2715/) при установке само увидит предыдущую версию и предложит установить поверх.
+
 Плагин называется **IPYIDA** и он устанавливается простым копированием и вставкой следующей строки в панель **PYTHON**.
 
 ```
-1. import urllib2; exec urllib2.urlopen('https://github.com/eset/ipyida/raw/stable/install_from_ida.py').read()
+import urllib2; exec urllib2.urlopen('https://raw.githubusercontent.com/eset/ipyida/be38983572e8af18c9af1de63c90e170c2ecc4c1/install_from_ida.py').read()
 ```
 
 Это одно-строчная команда, которую можно скопировать и вставить отсюда, если что-то пойдёт не так, то ссылка на неё находится ниже.
@@ -290,7 +294,7 @@ In[4]: x = ,my_function /home/me # syntax error
 
 Она устраняется, изменением скриптв на такой:
 ```
-import urllib2; import ssl; ssl._create_default_https_context = ssl._create_unverified_context; exec urllib2.urlopen('https://github.com/eset/ipyida/raw/stable/install_from_ida.py').read()
+import urllib2; import ssl; ssl.create_default_https_context = ssl.create_unverified_context; exec urllib2.urlopen('https://github.com/eset/ipyida/raw/stable/install_from_ida.py').read()
 ```
 Решение любезно предоставил ВАСМовчанин - [loonydev](https://wasm.in/members/loonydev.22857/)
 
