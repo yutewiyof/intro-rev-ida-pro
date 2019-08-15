@@ -72,26 +72,33 @@
 
 С помощью этих знаний, мы могли бы уже создать скрипт. Те данные, которые мы бы послали программе, были бы такие.
 
-FRUTA = 68 \* "A" + COOKIE + FLAG + COOKIE2
+**FRUTA = 68 \* "A" + COOKIE + FLAG + COOKIE2**
 
-**from** subprocess **import** \*
-**import** struct
-p = Popen\(\[**r'C:\Users\ricna\Desktop\23-INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO PARTE 23\IDA2.exe'**, **'f'**\], stdout=PIPE, stdin=PIPE, stderr=STDOUT\)
-
-cookie=struct.pack\(**"&lt;L"**,0x71727374\)
-cookie2=struct.pack\(**"&lt;L"**,0x91929394\)
-flag=struct.pack\(**"&lt;L"**,0x90909090\)
-
-**print "ATACHEA EL DEBUGGER Y APRETA ENTER\n"**
-raw\_input\(\)
-
-primera=68 \***"A"**+ cookie + flag + cookie2
-p.stdin.write\(primera\)
-
-testresult = p.communicate\(\)\[0\]
-
-**print** primera
-**print**\(testresult\)
+> **from** subprocess **import** \*
+>
+> **import** struct
+>
+> p = Popen\(\[**r'C:\Users\ricna\Desktop\23-INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO PARTE 23\IDA2.exe'**, **'f'**\], stdout=PIPE, stdin=PIPE, stderr=STDOUT\)
+>
+> cookie=struct.pack\(**"&lt;L"**,0x71727374\)
+>
+> cookie2=struct.pack\(**"&lt;L"**,0x91929394\)
+>
+> flag=struct.pack\(**"&lt;L"**,0x90909090\)
+>
+> **print "ATACHEA EL DEBUGGER Y APRETA ENTER\n"**
+>
+> raw\_input\(\)
+>
+> primera=68 \***"A"**+ cookie + flag + cookie2
+>
+> p.stdin.write\(primera\)
+>
+> testresult = p.communicate\(\)\[0\]
+>
+> **print** primera
+>
+> **print**\(testresult\)
 
 ![](.gitbook/assets/24/14.png)
 
@@ -99,12 +106,20 @@ testresult = p.communicate\(\)\[0\]
 
 И получаем нужный нам результат.
 
-До встрече в следующей части. Для практики, Вы можете разобрать сами примеры **IDA3**.**EXE** и **IDA4**.**EXE**, которые прикреплены к данному туториалу.
+До встрече в следующей части. Для практики, Вы можете разобрать сами примеры **IDA3.EXE** и **IDA4.EXE**, которые прикреплены к данному туториалу.
 
-========================================================
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 02.12.2017
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/24-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2024.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/24-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2024.7z)
