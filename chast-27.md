@@ -1,6 +1,6 @@
 # Часть 27
 
-В этой части, мы будем решать упражнение, которое мы оставили для решения в предыдущей части. Оно называется **IDA\_STRUCT.7Z**. Если Вы не решили это упражнение или у Вас его нет, загрузите его отсюда.
+В этой главе, мы будем решать упражнение, которое мы оставили для решения в предыдущей части. Оно называется **IDA\_STRUCT.7Z**. Если Вы не решили это упражнение или у Вас его нет, загрузите его отсюда.
 
 [http://ricardo.crver.net/WEB/INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO/EJERCICIOS/IDA\_STRUCT\_RESOLVER DESPUES DE LA PARTE 26.7z](http://ricardo.crver.net/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/IDA_STRUCT_RESOLVER%20DESPUES%20DE%20LA%20PARTE%2026.7z)
 
@@ -446,12 +446,20 @@
 ![](.gitbook/assets/27/100.png)
 
 Готово. Теперь пример решен. Мы победили.
-Увидимся в **28** части.
+Увидимся в **28**-й главе.
 
-=====================================================
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 05.01.2018
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/27-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2027.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/27-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2027.7z)
