@@ -81,9 +81,9 @@
 
 Используя программу **GREATIS** **WINDOWSE**, можно получить информацию о тех окнах, над которыми находится курсор. Взять её можно здесь.
 
-[http://www.greatis.com/wdsetup.exe
+[http://www.greatis.com/wdsetup.exe](http://www.greatis.com/wdsetup.exe)
 
-![](.gitbook/assets/19/20.png) ](http://www.greatis.com/wdsetup.exe)
+![](.gitbook/assets/19/20.png)
 
 Я вижу, что верхний **EDIT** **BOX** **CONTROL** равен **0x3E8,** а нижний - **0x3E9**.
 
@@ -120,6 +120,7 @@
 Здесь Вы видите **ЦИКЛ**. Он увеличивает **ESI**, чтобы читать побайтно каждый символ буфера **STRING\_USER**, и сравнивает каждый из них с числом **0x41**.
 
 ![](.gitbook/assets/19/27.png)
+
 ![](.gitbook/assets/19/28.png)
 
 Мы можем сделать правый щелчок по числу **0x41** и изменить его на символ **A**, который является символом **ASCII** для этого значения.
@@ -153,23 +154,25 @@
 
 Вопрос таков. Можем ли мы уже создать скрипт для **PYTHON**, чтобы получить кейген?
 
-Код \(C++\):
+```python
+user=raw_input()
+largo=len(user)
 
-1. user=raw\_input\(\)
-2. largo=len\(user\)
-3. if \(largo&gt; 0xB\):
-4. exit\(\)
-5. 6. USERMAY=""
-7. 8. for i in range\(largo\):
-9. if \(ord\(user\)&lt;0x41\):
-10. print "CARACTER INVALIDO"
-11. exit\(\)
-12. if \(ord\(user\) &gt;= 0x5A\):
-13. USERMAY+= chr\(ord\(user\)-0x20\)
-14. else:
-15. USERMAY+= chr\(ord\(user\)\)
-16. 17. 18. print "USER",USERMAY
+if (largo > 0xB):
+    exit()
 
+USERMAY=""
+for i in range(largo):
+    if (ord(user[i]) < 0x41):
+        print "CARACTER INVALIDO"
+        exit()
+    if (ord(user[i]) >= 0x5A):
+        USERMAY+= chr(ord(user[i])-0x20)
+    else:
+        USERMAY+= chr(ord(user[i]))
+
+print "USER",USERMAY
+```
 
 Мы видим, что скрипт делает то же самое, что и программа. Он берет по одному символы строки **ПОЛЬЗОВАТЕЛЯ** и сравниваем их с кодом **0x41**. Если символ меньше, он говорит нам, что это недопустимый символ и переносит нас на **ВЫХОД**. Но если он больше или равен **0x5A,** то программа вычитает из него **0x20** и добавляет его к строке **USERMAY**.
 
@@ -285,30 +288,37 @@
 
 Здесь я копирую код в кейген.
 
-Код \(C++\):
+```python
+sum = 0
+user = raw_input()
+largo = len(user)
+if (largo > 0xB):
+    exit()
+USERMAY = ""
+for i in range(largo):
+    if (ord(user) < 0x41):
+        print "CARACTER INVALIDO"
+        exit()
+    if (ord(user) >= 0x5A):
+        userMAY += chr(ord(user) - 0x20)
+    else:
+        USERMAY += chr(ord(user))
 
-1. sum=0
-2. user=raw\_input\(\)
-3. largo=len\(user\)
-4. if \(largo&gt; 0xB\):
-5. exit\(\)
-6. 7. USERMAY=""
-8. 9. for i in range\(largo\):
-10. if \(ord\(user\)&lt;0x41\):
-11. print "CARACTER INVALIDO"
-12. exit\(\)
-13. if \(ord\(user\) &gt;= 0x5A\):
-14. userMAY+= chr\(ord\(user\)-0x20\)
-15. else:
-16. USERMAY+= chr\(ord\(user\)\)
-17. 18. print "USER",USERMAY
-19. 20. for i in range\(len\(userMAY\)\):
-21. sum+=ord \(userMAY\)
-22. 23. print "SUMATORIA", hex\(sum\)
-24. 25. xoreado= sum ^ 0x5678
-26. print "XOREADO", hex\(xoreado\)
-27. 28. TOTAL= xoreado ^ 0x1234
-29. 30. print "PASSWORD", TOTAL
+print "USER",USERMAY
+
+for i in range(len(userMAY)):
+    sum += ord (userMAY)
+
+print "SUMATORIA", hex(sum)
+
+xoreado= sum ^ 0x5678
+
+print "XOREADO", hex(xoreado)
+
+TOTAL= xoreado ^ 0x1234
+
+print "PASSWORD", TOTAL
+```
 
 
 Даже в редких случаях с символом **Z,** получаем такой результат:
@@ -319,13 +329,22 @@
 
 ![](.gitbook/assets/19/61.png)
 
-Таким образом, мы отреверсили и сделали кейген для крекми **CRUEHEAD**. Теперь мы увидимся с Вами в **20**-той части.
+Таким образом, мы отреверсили и сделали кейген для крекми **CRUEHEAD**. Теперь мы увидимся с Вами в **20**-й главе.
 
 До следующей главы, друзья.
 
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 22.10.2017
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/19-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2019.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/19-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2019.7z)
