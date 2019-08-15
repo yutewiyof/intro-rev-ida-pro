@@ -36,7 +36,7 @@
 
 Я могу изменить это представление на буквы **QRST**, которые являются символами **ASCII** этого **HEX** значения.
 
-Мы также можем видеть, что компилятор не использует **CANARY** защиту, потому что в начале функции программа должна считать переменную из секции **DATA** и **XOR**ить эту переменную с помощью регистра **EBP** и сохранить её чуть выше **STORED** **EBP** в стек, а также, считать её снова, непосредственно перед выходом из функции, чтобы вызвать **CALL**, который проверит это значение переменной. Ничего из этого не происходит здесь. Если мы посмотрим статический анализ стека, сделав двойной щелчок на любой переменной.
+Мы также можем видеть, что компилятор не использует **CANARY** защиту, потому что в начале функции программа должна считать переменную из секции **DATA** и **XOR**'ить эту переменную с помощью регистра **EBP** и сохранить её чуть выше **STORED** **EBP** в стек, а также, считать её снова, непосредственно перед выходом из функции, чтобы вызвать **CALL**, который проверит это значение переменной. Ничего из этого не происходит здесь. Если мы посмотрим статический анализ стека, сделав двойной щелчок на любой переменной.
 
 ![](.gitbook/assets/23/08.png)
 
@@ -116,7 +116,7 @@
 
 ![](.gitbook/assets/23/23.png)
 
-Мы видим, что первый **PRINTF** имеет **3** аргумента, потому что он заменяет форматную строку в строке "**buf : %08x cookie : %08x\n**". Для двух верхних аргументов, будет так.
+Мы видим, что первый **PRINTF** имеет **3** аргумента, потому что он заменяет форматную строку в строке `buf : %08x cookie : %08x\n`. Для двух верхних аргументов, будет так.
 
 ![](.gitbook/assets/23/24.png)
 
@@ -142,27 +142,33 @@
 
 Я печатаю строку в **IDA**, и копирую её в буфер обмена, и вставляю её здесь.
 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATSRQ
+`AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATSRQ`
 
-Теперь запускаю программу в консоли, но она будет закрываться и я не увижу строку, если программа выйдет. Когда программа ожидаем ввода я вставляю подготовленную строку и ...
+Теперь открываю консоль и запускаю из нее программу, так как иначе она будет закрываться и я не увижу строку с сообщением.
+
+Когда программа ожидаем ввода я вставляю подготовленную строку и ...
 
 ![](.gitbook/assets/23/29.png)
 
 Скрипт очень простой. Он также совпадает с предыдущим. В нашем случае он не имеет двух потоков ввода для **STDIN**, а имеет только один.
 
-**from** subprocess **import** \*
-p = Popen\(\[**r'C:\Users\ricna\Desktop\New folder \(6\)\IDA1.exe'**, **'f'**\], stdout=PIPE, stdin=PIPE, stderr=STDOUT\)
-
-**print "ATACHEA EL DEBUGGER Y APRETA ENTER\n"**
-raw\_input\(\)
-
-primera=**"A"** \*140 + **"TSRQ\n"**
-p.stdin.write\(primera\)
-
-testresult = p.communicate\(\)\[0\]
-
-**print** primera
-**print**\(testresult\)
+> **from** subprocess **import** \*
+>
+> p = Popen\(\[**r'C:\Users\ricna\Desktop\New folder \(6\)\IDA1.exe'**, **'f'**\], stdout=PIPE, stdin=PIPE, stderr=STDOUT\)
+>
+> **print "ATACHEA EL DEBUGGER Y APRETA ENTER\n"**
+>
+> raw\_input\(\)
+>
+> primera=**"A"** \*140 + **"TSRQ\n"**
+>
+> p.stdin.write\(primera\)
+>
+> testresult = p.communicate\(\)\[0\]
+>
+> **print** primera
+>
+> **print**\(testresult\)
 
 ![](.gitbook/assets/23/30.png)
 
@@ -170,11 +176,20 @@ testresult = p.communicate\(\)\[0\]
 
 Следующее упражнение называется **IDA2**.**EXE**.
 
-До встрече в **24**-той главе.
+До встрече в **24**-й главе.
 
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 27.11.2017
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/23-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2023.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/23-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2023.7z)
