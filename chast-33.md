@@ -14,12 +14,13 @@
 
 Добавьте переменную **PYTHONPATH**, к которой я добавил каталог **PYTHON**. Затем, идёт точка с запятой, и затем папка **WINEXT**. В моём случае это выглядит так.
 
-**C:\PYTHON27;**
-**C:\PROGRAM FILES \(X86\)\WINDOWS KITS\10\DEBUGGERS\X86\WINEXT**
+> **C:\PYTHON27;**
+>
+> **C:\PROGRAM FILES \(X86\)\WINDOWS KITS\10\DEBUGGERS\X86\WINEXT**
 
 ![](.gitbook/assets/33/03.png)
 
-И в переменную **PATH**, которая уже существует, я добавляю в конце точку с запятой, а затем строку **C:\PYTHON27\**
+И в переменную **PATH**, которая уже существует, я добавляю в конце точку с запятой, а затем строку `C:\PYTHON27\`
 
 ![](.gitbook/assets/33/04.png)
 
@@ -33,9 +34,9 @@
 
 И последнее — нужно загрузить последние версии следующих файлов:
 
-**WINDBGLIB.PY** [https://github.com/corelan/windbglib/raw/master/windbglib.py](https://github.com/corelan/windbglib/raw/master/windbglib.py)
+**WINDBGLIB.PY**: [https://github.com/corelan/windbglib/raw/master/windbglib.py](https://github.com/corelan/windbglib/raw/master/windbglib.py)
 
-**MONA.PY** [https://github.com/corelan/mona/raw/master/mona.py](https://github.com/corelan/mona/raw/master/mona.py)
+**MONA.PY**: [https://github.com/corelan/mona/raw/master/mona.py](https://github.com/corelan/mona/raw/master/mona.py)
 
 и скопировать их в тот же каталог, где находится файл **WINDBG.EXE**
 
@@ -47,7 +48,7 @@
 
 Когда файл загрузится, мы вводим.
 
-**!LOAD** **PYKD.PYD**
+> !LOAD PYKD.PYD
 
 Ничего не случится, но и не должно появится ошибок.
 
@@ -61,21 +62,21 @@
 
 Сейчас я попробую запустить **MONA**. Я выхожу из консоли с помощью функции **EXIT\(\)** и ввожу
 
-**!LOAD** **PYKD.PYD
-
-!PY** **MONA**
+> !LOAD PYKD.PYD
+>
+> !PY MONA
 
 ![](.gitbook/assets/33/10.png)
 
 Давайте попробуем некоторые команды **MONA**:
 
-**!PY** **MONA** **MODULES**
+> !PY MONA MODULES
 
 ![](.gitbook/assets/33/11.png)
 
 Мы видим защищенные модули, которые запущены. Мы будем изучать их позже. Сейчас мы подготовили рабочее окружение и готовы начать капать глубже.
 
-**!PY** **MONA** **ROP**
+> !PY MONA ROP
 
 Это займёт немного времени. Попробуйте увидеть, есть ли здесь такой модуль, где можно создать **ROP** \(позже мы увидим, что это такое\) и попытаемся его создать.
 
@@ -109,11 +110,11 @@
 
 Попробуем ещё команды, для развлечения \(**MONA** имеет их тысячи\)
 
-**!PY MONA ASSEMBLE -S "JMP** **ESP"**
+> !PY MONA ASSEMBLE -S "JMP ESP"
 
 ![](.gitbook/assets/33/19.png)
 
-**!PY** **MONA GETIAT**
+> !PY MONA GETIAT
 
 Она действительно имеет много полезных команд, чтобы увидеть импортированные функции.
 
@@ -121,16 +122,24 @@
 
 Удобно запускать **MONA** из-под пользователя **АДМИНИСТРАТОР**, чтобы сохранять информацию в файл. Мы можем получить также информацию об адресе, например так.
 
-**!PY** **MONA INFO -A АДРЕС**
+> !PY MONA INFO -A АДРЕС
 
 ![](.gitbook/assets/33/21.png)
 
-Хорошо. Мы немного отдохнули, и установили все необходимые инструменты для того, чтобы продолжать. Увидимся в **34** части.
+Хорошо. Мы немного отдохнули, и установили все необходимые инструменты для того, чтобы продолжать. Увидимся в **34** главе.
 
-====================================================================
-Автор текста: **Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на английский: **IvinsonCLS \(@IvinsonCLS\)**
-Перевод на русский с испанского+английского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на английский  язык — IvinsonCLS.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 27.02.2018
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/33-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2033.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/33-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2033.7z)
