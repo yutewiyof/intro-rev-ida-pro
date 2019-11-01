@@ -4,11 +4,11 @@
 
 В этом случае, мы будем создавать драйвер, который будет не только загружаться и выгружаться как раньше, но который сможет из программы в пользовательском режиме, присылать себе определенные аргументы для взаимодействия с ней.
 
-Чтобы получать информацию из пользовательского режима, мы должны научить наш драйвер отвечать на входные и выходные управляющие коды устройства \(**IOCTL**\), которые могут быть доставляться из пользовательского режима используя **API** **DEVICEIOCONTROL**. Мы уже видели, как наш драйвер может изменить процедуру загрузки, используя структуру **DRIVER**\_**OBJECT** и изменять указатель, который там храниться. Обработка **IOCTL** очень похожа. Нам просто нужно подготовить еще несколько процедур.
+Чтобы получать информацию из пользовательского режима, мы должны научить наш драйвер отвечать на входные и выходные управляющие коды устройства \(**IOCTL**\), которые могут быть доставляться из пользовательского режима используя **API DEVICEIOCONTROL**. Мы уже видели, как наш драйвер может изменить процедуру загрузки, используя структуру **DRIVER\_OBJECT** и изменять указатель, который там храниться. Обработка **IOCTL** очень похожа. Нам просто нужно подготовить еще несколько процедур.
 
 ![](.gitbook/assets/52/01.png)
 
-Первое, что мы должны сделать в нашей точке входа - создать **DEVICE** **OBJECT**.
+Первое, что мы должны сделать в нашей точке входа - создать **DEVICE OBJECT**.
 
 Я не буду объяснять всю теорию об этом. Кто хочет узнать больше, почитайте это:
 
@@ -16,46 +16,46 @@
 
 ![](.gitbook/assets/52/02.png)
 
-И это должно быть так. В нашем первом драйвере, мы могли только запускать и останавливать его и не могли получать управляющие команды из пользовательского режима. Поэтому теперь мы должны создать **DEVICE** **OBJECT**, используя **API** **IOCREATEDEVICE**.
+И это должно быть так. В нашем первом драйвере, мы могли только запускать и останавливать его и не могли получать управляющие команды из пользовательского режима. Поэтому теперь мы должны создать **DEVICE OBJECT**, используя **API IOCREATEDEVICE**.
 
 Функция, которую вызывает наша **DRIVERENTRY**, аналогична
 
-status = IoCreateDevice\(DriverObject,0,&deviceNameUnicodeString,FILE\_DEVICE\_HELLOWORLD,
-0,TRUE,&interfaceDevice\);
+`status = IoCreateDevice(DriverObject,0,&deviceNameUnicodeString,FILE_DEVICE_HELLOWORLD,
+0,TRUE,&interfaceDevice);`
 
----------------------------------------------------------------------------------------------------------------------------
 ![](.gitbook/assets/52/03.png)
 
 **Parameters**
 
-**DriverObject \[in\]**
-Pointer to the driver object for the caller. Each driver receives a pointer to its driver object in a parameter to its [DriverEntry](https://msdn.microsoft.com/es-es/library/windows/hardware/ff544113) routine.
+>**DriverObject \[in\]**
+>
+>Pointer to the driver object for the caller. Each driver receives a pointer to its driver object in a parameter to its [DriverEntry](https://msdn.microsoft.com/es-es/library/windows/hardware/ff544113) routine.
 
-NTSTATUS DriverEntry\(
-PDRIVER\_OBJECT DriverObject,
-PUNICODE\_STRING RegistryPath\)
-{
+`NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)`
 
-Как мы увидели, **DRIVERENTRY** получает два аргумента. Первый - указатель на структуру **DRIVER** **OBJECT**, которая передается в качестве первого аргумента функции **IOCREATEDEVICE**.
+Как мы увидели, **DRIVERENTRY** получает два аргумента. Первый - указатель на структуру **DRIVER OBJECT**, которая передается в качестве первого аргумента функции **IOCREATEDEVICE**.
 
+>**DeviceName \[in, optional\]**
+>
+>Optionally points to a buffer containing a null-terminated Unicode string that names the device object.
 
-**DeviceName \[in, optional\]**
-Optionally points to a buffer containing a null-terminated Unicode string that names the device object.
-
-WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
-UNICODE\_STRING deviceNameUnicodeString;
+>WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
+>
+>UNICODE\_STRING deviceNameUnicodeString;
 
 В нашем коде **DEVICENAME** соответствует имени устройства, а затем копируется в переменную **DEVICENAMEUNICODESTRING**, который передается как аргумент **API**.
 
-**DeviceType \[in\]**
-Specifies one of the system-defined FILE\_DEVICE\_XXX constants that indicate the type of device \(such as FILE\_DEVICE\_DISK or FILE\_DEVICE\_KEYBOARD\) or a vendor-defined value for a new type of device.
+>**DeviceType \[in\]**
+>
+>Specifies one of the system-defined FILE\_DEVICE\_XXX constants that indicate the type of device \(such as FILE\_DEVICE\_DISK or FILE\_DEVICE\_KEYBOARD\) or a vendor-defined value for a new type of device.
 
 В нашем случае, это значение, определяется нами в начале кода.
 
-\#define FILE\_DEVICE\_HELLOWORLD 0x00008337
+`#define FILE\_DEVICE\_HELLOWORLD 0x00008337`
 
-**DeviceObject \[out\]**
-Pointer to a variable that receives a pointer to the newly created [DEVICE\_OBJECT](https://msdn.microsoft.com/es-es/library/windows/hardware/ff543147) structure. TheDEVICE\_OBJECT structure is allocated from nonpaged pool.
+>**DeviceObject \[out\]**
+>
+>Pointer to a variable that receives a pointer to the newly created [DEVICE\_OBJECT](https://msdn.microsoft.com/es-es/library/windows/hardware/ff543147) structure. TheDEVICE\_OBJECT structure is allocated from nonpaged pool.
 
 Это указатель на **DWORD**, где **API** будет содержать указатель. Поэтому система говорит, что **OUT** – используется для выходного параметра.
 
@@ -69,26 +69,28 @@ Pointer to a variable that receives a pointer to the newly created [DEVICE\_OBJE
 
 ![](.gitbook/assets/52/05.png)
 
-Функция начинается с тех же двух указателей на структуры типа \_**DRIVER**\_**OBJECT** и \_**UNICODE**\_**STRING**.
+Функция начинается с тех же двух указателей на структуры типа **\_DRIVER\_OBJECT** и **\_UNICODE\_STRING**.
 
 Остальные - это переменные. Поскольку у нас есть символы, это не очень сложный случай. Но хорошо понемногу привыкать к реальным случаям, когда у нас нет символов.
 
-В переменную **VAR**\_**4** сохраняется **COOKIE** для защиты стека.
+В переменную **VAR\_4** сохраняется **COOKIE** для защиты стека.
 
 ![](.gitbook/assets/52/06.png)
 
 ![](.gitbook/assets/52/07.png)
 
-Здесь программа копирует имя устройства **UNICODE** размером **9** **DWORD** \(**0x24** байта\) в назначение, которым является переменная **DEVICENAMEBUFFER**, длина которой составляет **19** **WORDS**, т.е. **19** \* **2**, всего **38** байт в десятичном формате или **0x26** байт в шестнадцатеричном, поэтому всё, что копируется, намного меньше, чем буфер.
+Здесь программа копирует имя устройства **UNICODE** размером **9 DWORD** \(**0x24** байта\) в назначение, которым является переменная **DEVICENAMEBUFFER**, длина которой составляет **19 WORDS**, т.е. **19** \* **2**, всего **38** байт в десятичном формате или **0x26** байт в шестнадцатеричном, поэтому всё, что копируется, намного меньше, чем буфер.
 
 ![](.gitbook/assets/52/08.png)
 
-Python&gt;hex\(0x19\*2\)
+```console
+Python>hex(0x19 * 2)
 0x32
+```
 
 ![](.gitbook/assets/52/09.png)
 
-Затем копируется **DOS**\_**DEVICE**\_**NAME** размером **0xB** **DWORDS,** т.е. **0xB** \* **4** - это **0x2C** байт в шестнадцатеричной системе в общей сложности
+Затем копируется **DOS\_DEVICE\_NAME** размером **0xB DWORDS,** т.е. **0xB** \* **4** - это **0x2C** байт в шестнадцатеричной системе в общей сложности
 
 ![](.gitbook/assets/52/10.png)
 
@@ -104,11 +106,11 @@ Python&gt;hex\(0x19\*2\)
 
 ![](.gitbook/assets/52/13.png)
 
-Затем идёт вызов функции **DBGPRINT**, которая печатает сообщение "**DRIVERENTRY** **CALLED**".
+Затем идёт вызов функции **DBGPRINT**, которая печатает сообщение "**DRIVERENTRY CALLED**".
 
 ![](.gitbook/assets/52/14.png)
 
-Давайте продолжим со следующего: преобразуем строку **UNICODE** в ту, которая имеет тип \_**UNICODE**\_**STRING.** Для этого существует следующий **API** **RTLINITUNICODESTRING**.
+Давайте продолжим со следующего: преобразуем строку **UNICODE** в ту, которая имеет тип **\_UNICODE\_STRING**. Для этого существует следующий **API RTLINITUNICODESTRING**.
 
 ![](.gitbook/assets/52/15.png)
 
@@ -116,11 +118,11 @@ Python&gt;hex\(0x19\*2\)
 
 ![](.gitbook/assets/52/16.png)
 
-WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
+>WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
-Источник **DEVICENAMEBUFFER** является указателем на буфер, который имеет строку юникода, а назначение - указатель на структуру **UNICODE**\_**STRING**. Эта структура, которую мы уже видели, имеет три поля, два слова \(**LENGHT** и **MAXIMUMLENGHT**, а третья должна быть указателем на строку юникода.
+Источник **DEVICENAMEBUFFER** является указателем на буфер, который имеет строку юникода, а назначение - указатель на структуру **UNICODE\_STRING**. Эта структура, которую мы уже видели, имеет три поля, два слова \(**LENGHT** и **MAXIMUMLENGHT**, а третья должна быть указателем на строку юникода.
 
-Это означает, что **API** скопирует адрес этого исходного буфера в третье поле структуры, добавит **LENGHT** и **MAXIMUMLENGHT** в соответствующие поля и преобразует общий буфер со строкой **UNICODE** в структуру **UNICODE**\_**STRING**.
+Это означает, что **API** скопирует адрес этого исходного буфера в третье поле структуры, добавит **LENGHT** и **MAXIMUMLENGHT** в соответствующие поля и преобразует общий буфер со строкой **UNICODE** в структуру **UNICODE\_STRING**.
 
 ![](.gitbook/assets/52/17.png)
 
@@ -128,7 +130,7 @@ WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
 ![](.gitbook/assets/52/19.png)
 
-Это структура типа **UNICODE**\_**STRING** из **8** байт. Так как они представляют собой два слова для **LENGHT** и **DWORD** для копирования указателя на буфер с помощью строки юникода,
+Это структура типа **UNICODE\_STRING** из **8** байт. Так как они представляют собой два слова для **LENGHT** и **DWORD** для копирования указателя на буфер с помощью строки юникода.
 
 Тогда есть вызов к **API IOCREATEDEVICE**, про которую мы говорили.
 
@@ -138,23 +140,23 @@ WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
 ![](.gitbook/assets/52/21.png)
 
-Затем идет инструкция **PUSH** **1**, которая является исключительным аргументом, который мы не видели раньше, потому что это не имело большого значения. Затем появляется инструкция **PUSH** **EDI.**Мы видим, что в регистре **EDI** есть нуль, поскольку раньше была выполнена инструкция **XOR** **EDI**, **EDI**.
+Затем идет инструкция **PUSH 1**, которая является исключительным аргументом, который мы не видели раньше, потому что это не имело большого значения. Затем появляется инструкция **PUSH EDI**.Мы видим, что в регистре **EDI** есть нуль, поскольку раньше была выполнена инструкция **XOR EDI, EDI**.
 
 ![](.gitbook/assets/52/22.png)
 
-Это также не очень важно. Затем идёт инструкция **PUSH** **8337H**, которая является константой **DEVICETYPE**, которую мы определили в исходном коде.
+Это также не очень важно. Затем идёт инструкция **PUSH 8337H**, которая является константой **DEVICETYPE**, которую мы определили в исходном коде.
 
-\#define FILE\_DEVICE\_HELLOWORLD 0x00008337
+>\#define FILE\_DEVICE\_HELLOWORLD 0x00008337
 
-Затем появляется указатель на структуру с \_**UNICODE**\_**STRING** с **DEVICENAME**
+Затем появляется указатель на структуру с **\_UNICODE\_STRING** с **DEVICENAME**
 
 ![](.gitbook/assets/52/23.png)
 
-Затем идет другая инструкция **PUSH** **EDI**, которая равна нулю **DEVICEEXTENSIONSIZE** и в конце регистр **EBX** является указателем на **DRIVEROBJECT**.
+Затем идет другая инструкция **PUSH EDI**, которая равна нулю **DEVICEEXTENSIONSIZE** и в конце регистр **EBX** является указателем на **DRIVEROBJECT**.
 
 ![](.gitbook/assets/52/24.png)
 
-Давайте запомним, что это указатель на структуру \_**DRIVER**\_**OBJECT**.
+Давайте запомним, что это указатель на структуру **\_DRIVER\_OBJECT**.
 
 ![](.gitbook/assets/52/25.png)
 
@@ -164,25 +166,25 @@ WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
 Если регистр **EAX** имеет отрицательное значение, будет сбой и инструкция **JS** будет переходить на зеленую стрелку. Но у нас всё будет нормально и программа перейдет к функции **DBGPRINT**, которая напечатает "**SUCESS**"
 
-Затем программа будет делать то же самое с другой строкой **UNICODE** при преобразовании ее из буфера со строкой **UNICODE** в структурную форму \_**UNICODE**\_**STRING**, как и раньше, с помощью **APIRTLINITUNICODESTRING**.
+Затем программа будет делать то же самое с другой строкой **UNICODE** при преобразовании ее из буфера со строкой **UNICODE** в структурную форму **\_UNICODE\_STRING**, как и раньше, с помощью **APIRTLINITUNICODESTRING**.
 
-Поэтому **DEVICELINKUNICODESTRING** теперь будет иметь тип \_**UNICODE**\_**STRING** и будет иметь в своем третьем поле указатель на буфер со строкой **UNICODE** **L"\\DOSDEVICES\\HELLOWORLD"**.
+Поэтому **DEVICELINKUNICODESTRING** теперь будет иметь тип **\_UNICODE\_STRING** и будет иметь в своем третьем поле указатель на буфер со строкой **UNICODE L"\\DOSDEVICES\\HELLOWORLD"**.
 
 ![](.gitbook/assets/52/27.png)
 
-Затем, передаются указатели на два \_**UNICODE**\_**STRING** в функцию **IOCREATESYMBOLICLINK.** Мы создаем символическую связь между **DEIVCEOBJECT** и пользовательским режимом.
+Затем, передаются указатели на два **\_UNICODE\_STRING** в функцию **IOCREATESYMBOLICLINK**. Мы создаем символическую связь между **DEIVCEOBJECT** и пользовательским режимом.
 
 Регистр **EBX** имеет указатель на структуру **DRIVER\_OBJECT**
 
 ![](.gitbook/assets/52/28.png)
 
-Если объект не находится в структурах как раньше, мы переходим в **LOCAL** **TYPES** и синхронизируем программа так, чтобы объект отображался. Мы нажимаем **T** в каждом из этих полей.
+Если объект не находится в структурах как раньше, мы переходим в **LOCAL TYPES** и синхронизируем программа так, чтобы объект отображался. Мы нажимаем **T** в каждом из этих полей.
 
-Как и в предыдущем случае, мы устанавливаем пользовательскую подпрограмму, когда загружается драйвер, которая находится по смещению **EBX** + **34H.** Теперь нажимая **T**, мы видим, что это поле **DRIVERUNLOAD**.
+Как и в предыдущем случае, мы устанавливаем пользовательскую подпрограмму, когда загружается драйвер, которая находится по смещению **EBX** + **34H**. Теперь нажимая **T**, мы видим, что это поле **DRIVERUNLOAD**.
 
 ![](.gitbook/assets/52/29.png)
 
-Мы видим, что программа загрузки драйвера не только печатает с помощью **DBGPRINT** строку "**DRIVER** **UNLOADING**"
+Мы видим, что программа загрузки драйвера не только печатает с помощью **DBGPRINT** строку "**DRIVER UNLOADING**"
 
 ![](.gitbook/assets/52/30.png)
 
@@ -194,21 +196,23 @@ WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
 ![](.gitbook/assets/52/32.png)
 
-**MAJORFUNCTION** \[**IRP**\_**MJ**\_**CREATE**\] - это первая позиция в массиве, т.е. **MAJORFUNCION**\[**0x0**\].
+**MAJORFUNCTION** \[**IRP\_MJ\_CREATE**\] - это первая позиция в массиве, т.е. **MAJORFUNCION**\[**0x0**\].
 
 Поскольку у нас есть таблица.
 
 ![](.gitbook/assets/52/33.png)
 
-**\[IRP\_MJ\_CREATE\]** это **0x0
-\[IRP\_MJ\_CLOSE\]** это **0x02
-\[IRP\_MJ\_DEVICE\_CONTROL\]** это **0x0E**
+>**\[IRP\_MJ\_CREATE\]** это **0x0
+>
+>\[IRP\_MJ\_CLOSE\]** это **0x02
+>
+>\[IRP\_MJ\_DEVICE\_CONTROL\]** это **0x0E**
 
 Три поля инициализируются адресом функции **DRIVERDISPATCH**
 
 ![](.gitbook/assets/52/34.png)
 
-Значение записывается в положение **0x0**, так как \[**IRP**\_**MJ**\_**CLOSE**\] равно **0x0** \* **4** = **0**
+Значение записывается в положение **0x0**, так как \[**IRP\_MJ\_CLOSE**\] равно **0x0** \* **4** = **0**
 
 Затем
 
@@ -232,60 +236,59 @@ WCHAR deviceNameBuffer\[\] = L"\\Device\\HelloWorld";
 
 ![](.gitbook/assets/52/38.png)
 
-Функция получает два аргумента. Знаменитый указатель на **DEVICE**\_**OBJECT**, а второй - указатель на структуру **IRP**, которая является сложной структурой, и мы увидим её позже.
+Функция получает два аргумента. Знаменитый указатель на **DEVICE\_OBJECT**, а второй - указатель на структуру **IRP**, которая является сложной структурой, и мы увидим её позже.
 
 ![](.gitbook/assets/52/39.png)
 
 ![](.gitbook/assets/52/40.png)
 
-Мы видим, что, как и в предыдущий раз при регистрации и запуске, драйвер печатает **DRIVERENTRY** **CALLED** и **SUCESS**, а также при выгрузке **Driver** **UNLOADING**, но теперь также из пользовательского приложения, которое я сделал при его запуске, хотя раньше нужно было нажимать **START** **SERVICE** для того, чтобы он начал печатать.
+Мы видим, что, как и в предыдущий раз при регистрации и запуске, драйвер печатает **DRIVERENTRY CALLED** и **SUCESS**, а также при выгрузке **Driver UNLOADING**, но теперь также из пользовательского приложения, которое я сделал при его запуске, хотя раньше нужно было нажимать **START SERVICE** для того, чтобы он начал печатать.
 
 ![](.gitbook/assets/52/41.png)
 
 При взаимодействии с программой в пользовательском режиме вызывается обработчик. Мы видим, что моя программа делает только это \(исполняемый файл будет прикреплен к туториалу\)
 
-\#include "stdafx.h"
-\#include &lt;windows.h&gt;
+```c
+#include "stdafx.h"
+#include <windows.h>
 
+#define FILE_DEVICE_HELLOWORLD 0x00008337
+#define IOCTL_SAYHELLO (ULONG) CTL_CODE( FILE_DEVICE_HELLOWORLD, 0x00, METHOD_BUFFERED, FILE_ANY_ACCESS )
 
-\#define FILE\_DEVICE\_HELLOWORLD 0x00008337
-\#define IOCTL\_SAYHELLO \(ULONG\) CTL\_CODE\( FILE\_DEVICE\_HELLOWORLD, 0x00, METHOD\_BUFFERED, FILE\_ANY\_ACCESS \)
-
-int main\(\)
+int main()
 {
+    HANDLE hDevice;
+    DWORD nb;
+    hDevice = CreateFile(TEXT(".HelloWorld"), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-HANDLE hDevice;
-DWORD nb;
-hDevice = CreateFile\(TEXT\("\\\\.\\HelloWorld"\), GENERIC\_READ \| GENERIC\_WRITE, 0, NULL, OPEN\_EXISTING, FILE\_ATTRIBUTE\_NORMAL, NULL\);
+    DeviceIoControl(hDevice, IOCTL_SAYHELLO, NULL, 0, NULL, 0, &nb, NULL);
 
-DeviceIoControl\(hDevice, IOCTL\_SAYHELLO, NULL, 0, NULL, 0, &nb, NULL\);
-
-CloseHandle\(hDevice\);
-return 0;
-
+    CloseHandle(hDevice);
+    return 0;
 }
+```
 
-Т.е. когда я вызываю функцию **CREATEFILE,** чтобы иметь хэндл драйвера, драйвер переходит к обработчику через обратный вызов \[**IRP**\_**MJ**\_**CREATE**\] и печатает следующее:
+Т.е. когда я вызываю функцию **CREATEFILE,** чтобы иметь хэндл драйвера, драйвер переходит к обработчику через обратный вызов \[**IRP\_MJ\_CREATE**\] и печатает следующее:
 
 ![](.gitbook/assets/52/42.png)
 
-Затем, когда Вы вызываете с помощью **функции** **DEVICEIOCONTROL**, передавая его **IOCTL** код.
+Затем, когда Вы вызываете с помощью **функции DEVICEIOCONTROL**, передавая его **IOCTL** код.
 
 ![](.gitbook/assets/52/43.png)
 
-Драйвер использует обратный вызов \[**IRP\_MJ\_DEVICE\_CONTROL**\], а затем проверяет, является ли **IOCTL** код равным в этом случае **IOCTL**\_**SAYHELLO**
+Драйвер использует обратный вызов \[**IRP\_MJ\_DEVICE\_CONTROL**\], а затем проверяет, является ли **IOCTL** код равным в этом случае **IOCTL\_SAYHELLO**
 
 ![](.gitbook/assets/52/44.png)
 
-В этом случае драйвер печатает "**HELLO** **WORLD**"
+В этом случае драйвер печатает "**HELLO WORLD**"
 
 ![](.gitbook/assets/52/45.png)
 
-И последний код вызывается, когда я вызываю функцию **CLOSEHANDLE** и вызывается соответствующий \[**IRP**\_**MJ**\_**CLOSE**\]
+И последний код вызывается, когда я вызываю функцию **CLOSEHANDLE** и вызывается соответствующий \[**IRP\_MJ\_CLOSE**\]
 
 ![](.gitbook/assets/52/46.png)
 
-Я синхронизирую структуру **IRP** через **LOCAL** **TYPES.**
+Я синхронизирую структуру **IRP** через **LOCAL TYPES**.
 
 ![](.gitbook/assets/52/47.png)
 
@@ -295,7 +298,7 @@ return 0;
 
 ![](.gitbook/assets/52/48.png)
 
-Драйвер читает из структуры **IRP** часть **TAIL,** которая не определена в **MSDN**, но здесь, после поиска по смещению **EDI**+**60** и передачи этого значения в регистр **EBX**, его содержимое переходит в регистр **EAX**, который впервые имеет значение \[**IRP\_MJ\_CREATE**\], т.е. нуль. И в этом случае драйвер пойдет туда, чтобы напечатать сообщение о том, что произошло создание.
+Драйвер читает из структуры **IRP** часть **TAIL,** которая не определена в **MSDN**, но здесь, после поиска по смещению **EDI+60** и передачи этого значения в регистр **EBX**, его содержимое переходит в регистр **EAX**, который впервые имеет значение \[**IRP\_MJ\_CREATE**\], т.е. нуль. И в этом случае драйвер пойдет туда, чтобы напечатать сообщение о том, что произошло создание.
 
 Если я снова нажму **RUN**, драйвер снова остановится со значением регистра **EAX** равным **0x0E** из \[**IRP\_MJ\_DEVICE\_CONTROL**\].
 
@@ -309,11 +312,13 @@ return 0;
 
 ![](.gitbook/assets/52/51.png)
 
-\#define IOCTL\_SAYHELLO \(ULONG\) CTL\_CODE\( FILE\_DEVICE\_HELLOWORLD, 0x00, METHOD\_BUFFERED, FILE\_ANY\_ACCESS \)
+```c
+#define IOCTL_SAYHELLO (ULONG) CTL_CODE(FILE_DEVICE_HELLOWORLD, 0x00, METHOD_BUFFERED, FILE_ANY_ACCESS)
+```
 
-В коде **IOCTL** код, который получается из значения **0x8337** **FILE\_DEVICE**, выполняется несколькими операциями в соответствии с типом **IOCTL** \(в этом случае **METHOD** **BUFFERED** и т.д. и т.д\), Который дает нам **IOCTL** код равным **83370000**.
+В коде **IOCTL** код, который получается из значения **0x8337 FILE\_DEVICE**, выполняется несколькими операциями в соответствии с типом **IOCTL** \(в этом случае **METHOD BUFFERED** и т.д. и т.д\), Который дает нам **IOCTL** код равным **83370000**.
 
-Здесь драйвер сравнивает это и как есть. Он выходит и печатает сообщение "**HELLO** **WORLD**!".
+Здесь драйвер сравнивает это и как есть. Он выходит и печатает сообщение "**HELLO WORLD**!".
 
 ![](.gitbook/assets/52/52.png)
 
@@ -330,9 +335,17 @@ return 0;
 ![](.gitbook/assets/52/55.png)
 
 Я думаю, что с этим туториалом мы хорошо познакомились с этой темой. Мы продолжим в следующей части и будем углубляться больше.
-**=======================================================
-Автор текста: Рикардо Нарваха** - **Ricardo** **Narvaja** \(**@ricnar456**\)
-Перевод на русский с испанского: **Яша\_Добрый\_Хакер\(Ростовский фанат Нарвахи\).**
-Перевод специально для форума системного и низкоуровневого программирования — **WASM.IN
+
+* * *
+
+Автор оригинального текста — Рикардо Нарваха.
+
+Перевод и адаптация на русский язык — Яша Яшечкин.
+
+Перевод специально для форума системного и низкоуровневого программирования - WASM.IN
+
 22.10.2018
-Версия 1.0**
+
+Источник:
+
+[**http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/52-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2052.7z**](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/52-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2052.7z)
