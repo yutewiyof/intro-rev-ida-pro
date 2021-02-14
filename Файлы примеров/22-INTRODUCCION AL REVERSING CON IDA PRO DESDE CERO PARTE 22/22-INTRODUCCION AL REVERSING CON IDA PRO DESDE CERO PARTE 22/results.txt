@@ -1,0 +1,85 @@
+-------------------------------------------------------------
+-------------------------------------------------------------
+identical functions: 71
+01051000 __local_stdio_printf_options                     - 00ae1000 __local_stdio_printf_options                    
+01051010 __local_stdio_scanf_options                      - 00ae1010 __local_stdio_scanf_options                     
+01051020 printf                                           - 00ae1020 printf                                          
+01051050 scanf_s                                          - 00ae1050 scanf_s                                         
+010510fd __security_check_cookie                          - 00ae10fd __security_check_cookie                         
+0105110e pre_c_initialization                             - 00ae110e pre_c_initialization                            
+010511b2 post_pgo_initialization                          - 00ae11b2 post_pgo_initialization                         
+010511ba pre_cpp_initialization                           - 00ae11ba pre_cpp_initialization                          
+010511cc __scrt_common_main_seh                           - 00ae11cc __scrt_common_main_seh                          
+0105133b mainCRTStartup                                   - 00ae133b mainCRTStartup                                  
+01051345 __raise_securityfailure                          - 00ae1345 __raise_securityfailure                         
+0105136d __report_gsfailure                               - 00ae136d __report_gsfailure                              
+01051468 find_pe_section                                  - 00ae1468 find_pe_section                                 
+010514ac __scrt_acquire_startup_lock                      - 00ae14ac __scrt_acquire_startup_lock                     
+010514e1 __scrt_initialize_crt                            - 00ae14e1 __scrt_initialize_crt                           
+0105151a __scrt_initialize_onexit_tables                  - 00ae151a __scrt_initialize_onexit_tables                 
+010515b1 __scrt_is_nonwritable_in_current_image           - 00ae15b1 __scrt_is_nonwritable_in_current_image          
+0105163b __scrt_release_startup_lock                      - 00ae163b __scrt_release_startup_lock                     
+01051658 __scrt_uninitialize_crt                          - 00ae1658 __scrt_uninitialize_crt                         
+01051680 _onexit                                          - 00ae1680 _onexit                                         
+010516bb atexit                                           - 00ae16bb atexit                                          
+010516d0 __security_init_cookie                           - 00ae16d0 __security_init_cookie                          
+0105176c _get_startup_argv_mode                           - 00ae176c _get_startup_argv_mode                          
+01051770 _get_startup_file_mode                           - 00ae1770 _get_startup_file_mode                          
+01051776 __scrt_initialize_type_info                      - 00ae1776 __scrt_initialize_type_info                     
+01051782 _initialize_default_precision                    - 00ae1782 _initialize_default_precision                   
+010517a3 _guard_check_icall_nop                           - 00ae17a3 _guard_check_icall_nop                          
+010517a4 __scrt_initialize_default_local_stdio_options    - 00ae17a4 __scrt_initialize_default_local_stdio_options   
+010517c1 __scrt_is_user_matherr_present                   - 00ae17c1 __scrt_is_user_matherr_present                  
+010517cd __scrt_get_dyn_tls_init_callback                 - 00ae17cd __scrt_get_dyn_tls_init_callback                
+010517d3 __scrt_get_dyn_tls_dtor_callback                 - 00ae17d3 __scrt_get_dyn_tls_dtor_callback                
+010517d9 __scrt_fastfail                                  - 00ae17d9 __scrt_fastfail                                 
+010518f4 __scrt_initialize_winrt                          - 00ae18f4 __scrt_initialize_winrt                         
+010518f7 __scrt_is_managed_app                            - 00ae18f7 __scrt_is_managed_app                           
+0105193b __scrt_set_unhandled_exception_filter            - 00ae193b __scrt_set_unhandled_exception_filter           
+01051947 __scrt_unhandled_exception_filter                - 00ae1947 __scrt_unhandled_exception_filter               
+01051988 _RTC_Initialize                                  - 00ae1988 _RTC_Initialize                                 
+010519b3 _RTC_Terminate                                   - 00ae19b3 _RTC_Terminate                                  
+010519f0 __SEH_prolog4                                    - 00ae19f0 __SEH_prolog4                                   
+01051a36 __SEH_epilog4                                    - 00ae1a36 __SEH_epilog4                                   
+01051a4b _except_handler4                                 - 00ae1a4b _except_handler4                                
+01051a6e __isa_available_init                             - 00ae1a6e __isa_available_init                            
+01051c08 __scrt_is_ucrt_dll_in_use                        - 00ae1c08 __scrt_is_ucrt_dll_in_use                       
+01051c14 _memset                                          - 00ae1c14 _memset                                         
+01051c1a __except_handler4_common                         - 00ae1c1a __except_handler4_common                        
+01051c20 _exit_0                                          - 00ae1c20 _exit_0                                         
+01051c26 __seh_filter_exe                                 - 00ae1c26 __seh_filter_exe                                
+01051c2c __set_app_type                                   - 00ae1c2c __set_app_type                                  
+01051c32 ___setusermatherr                                - 00ae1c32 ___setusermatherr                               
+01051c38 __configure_narrow_argv                          - 00ae1c38 __configure_narrow_argv                         
+01051c3e __initialize_narrow_environment                  - 00ae1c3e __initialize_narrow_environment                 
+01051c44 __get_initial_narrow_environment                 - 00ae1c44 __get_initial_narrow_environment                
+01051c4a __initterm                                       - 00ae1c4a __initterm                                      
+01051c50 __initterm_e                                     - 00ae1c50 __initterm_e                                    
+01051c56 __exit                                           - 00ae1c56 __exit                                          
+01051c5c __set_fmode                                      - 00ae1c5c __set_fmode                                     
+01051c62 ___p___argc                                      - 00ae1c62 ___p___argc                                     
+01051c68 ___p___argv                                      - 00ae1c68 ___p___argv                                     
+01051c6e __cexit                                          - 00ae1c6e __cexit                                         
+01051c74 __c_exit                                         - 00ae1c74 __c_exit                                        
+01051c7a __register_thread_local_exe_atexit_callback      - 00ae1c7a __register_thread_local_exe_atexit_callback     
+01051c80 __configthreadlocale                             - 00ae1c80 __configthreadlocale                            
+01051c86 __set_new_mode                                   - 00ae1c86 __set_new_mode                                  
+01051c8c ___p__commode                                    - 00ae1c8c ___p__commode                                   
+01051c92 __initialize_onexit_table                        - 00ae1c92 __initialize_onexit_table                       
+01051c98 __register_onexit_function                       - 00ae1c98 __register_onexit_function                      
+01051c9e __crt_atexit                                     - 00ae1c9e __crt_atexit                                    
+01051ca4 __controlfp_s                                    - 00ae1ca4 __controlfp_s                                   
+01051caa _terminate                                       - 00ae1caa _terminate                                      
+01051cb0 IsProcessorFeaturePresent(x)                     - 00ae1cb0 IsProcessorFeaturePresent(x)                    
+01051cb6 __scrt_stub_for_acrt_uninitialize                - 00ae1cb6 __scrt_stub_for_acrt_uninitialize               
+-------------------------------------------------------------
+matched functions: 1
+[+] 01051090 main                                             - 00ae1090 main                                            
+-------------------------------------------------------------
+unmatched functions1: 0
+-------------------------------------------------------------
+unmatched functions2: 0
+-------------------------------------------------------------
+changed functions: 0
+-------------------------------------------------------------
+-------------------------------------------------------------

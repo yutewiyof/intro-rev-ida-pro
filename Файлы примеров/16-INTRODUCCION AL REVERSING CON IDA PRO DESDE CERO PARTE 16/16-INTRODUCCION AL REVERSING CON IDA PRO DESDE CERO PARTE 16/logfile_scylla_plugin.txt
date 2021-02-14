@@ -1,0 +1,13 @@
+DLL attached - Injection successful
+Open mapping successful
+Unsupported opcode found
+DLL successfully detached
+DLL attached - Injection successful
+Open mapping successful
+Unsupported opcode found
+DLL successfully detached
+DLL attached - Injection successful
+- ImpREC Plugin ->  C:\Users\ricna\Desktop\Scylla_v0.9.8\Plugins\ImpRec_Plugins\PECompact 2.7.x.dll
+getImprecPlugin() -> LoadLibraryW failed 0x45A
+Failed to get ImpREC Plugin
+DLL successfully detached

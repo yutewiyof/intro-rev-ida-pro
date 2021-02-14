@@ -1,0 +1,8 @@
+DLL attached - Injection successful
+Open mapping successful
+Unsupported opcode found
+DLL successfully detached
+DLL attached - Injection successful
+Open mapping successful
+Unsupported opcode found
+DLL successfully detached

