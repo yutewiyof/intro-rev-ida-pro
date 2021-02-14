@@ -4,6 +4,10 @@
 
 [**Gitbook версия**](https://yutewiyof.gitbook.io/intro-rev-ida-pro/)
 
+## Файлы примеров
+
+Файлы примеров можно скачать в папке [Файлы примеров](Файлы%20примеров/)
+
 ## Сборка
 
 Необходимо установить pandoc [https://pandoc.org/](https://pandoc.org/)
