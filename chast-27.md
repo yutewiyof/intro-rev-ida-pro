@@ -1,5 +1,7 @@
 # Часть 27
 
+[\[Используемые материалы\]](.gitbook/assets/files/27.zip)
+
 В этой главе, мы будем решать упражнение, которое мы оставили для решения в предыдущей части. Оно называется **IDA\_STRUCT.7Z**. Если Вы не решили это упражнение или у Вас его нет, загрузите его отсюда.
 
 [http://ricardo.crver.net/WEB/INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO/EJERCICIOS/IDA\_STRUCT\_RESOLVER DESPUES DE LA PARTE 26.7z](http://ricardo.crver.net/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/IDA_STRUCT_RESOLVER%20DESPUES%20DE%20LA%20PARTE%2026.7z)

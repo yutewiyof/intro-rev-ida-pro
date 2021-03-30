@@ -1,5 +1,7 @@
 # Часть 17
 
+[\[Используемые материалы\]](.gitbook/assets/files/17.zip)
+
 Мы добрались до **17**-й главы и предполагается, что, по крайней мере, Вы должны были попробовать решить это упражнение.
 
 [http://ricardonarvaja.info/WEB/INTRODUCCION AL REVERSING CON IDA PRO DESDE CERO/EJERCICIOS/](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/)

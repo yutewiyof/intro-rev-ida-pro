@@ -1,5 +1,7 @@
 # Часть 60
 
+[\[Используемые материалы\]](.gitbook/assets/files/60.zip)
+
 Перед тем, как начинать объяснять скрипт на **PYTHON** давайте скажем, что он основан на коде языка **C**, который находится на странице уязвимого драйвера.
 
 [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/tree/master/Exploit](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/tree/master/Exploit)

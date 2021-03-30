@@ -1,5 +1,7 @@
 # Часть 46
 
+[\[Используемые материалы\]](.gitbook/assets/files/46.zip)
+
 Хорошо. Мы будем рассматривать упражнение из **44** главы.
 
 [http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/PRACTICA_44.7z](http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/PRACTICA_44.7z)
