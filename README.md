@@ -38,6 +38,8 @@ pandoc -f markdown -t fb2 -o ida.fb2 README.md chast-01.md chast-02.md chast-03.
 
 Сайт оригинального автора: [ricardonarvaja.info](http://ricardonarvaja.info).
 
+([Копия на github](https://github.com/hdbreaker/RicardoNarvaja_ExploitingWithIDAPRO_Desde0))
+
 [Введение в реверсинг с нуля, используя IDA PRO - на английском (PDF)](http://ricardonarvaja.info/WEB/IDA%20DESDE%20CERO/EN%20INGLES/INGLES/)
 
 [Введение в реверсинг с нуля, используя IDA PRO - на испанском (Word)](http://ricardonarvaja.info/WEB/IDA%20DESDE%20CERO/CURSO%20DE%20IDA%20TUTES/)
